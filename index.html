@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indie Go Punk</title>
+<meta name="description" content="A podcast about small indie game studios. Founders talk about making, marketing and shipping their games.">
+<meta property="og:title" content="Indie Go Punk">
+<meta property="og:description" content="A podcast about small indie game studios.">
+<meta property="og:image" content="https://indiegopunk.com/og.jpg">
+<meta property="og:url" content="https://indiegopunk.com">
+<meta name="theme-color" content="#0d0a12">
+<link rel="icon" href="icon.png">
+<style>
+@font-face { font-family: "Archivo Black"; src: url("fonts/ArchivoBlack-Regular.ttf"); font-display: swap; }
+@font-face { font-family: "Space Mono"; font-weight: 700; src: url("fonts/SpaceMono-Bold.ttf"); font-display: swap; }
+/* Layout: one centred column. Wordmark tiles, one line of purpose, two buttons, a "coming soon" strip. */
+:root {
+  --ink: #0d0a12;
+  --panel: #1b1426;
+  --bone: #f2ece0;
+  --pink: #ff2e88;
+  --yellow: #f4ff3a;
+  --violet: #7a2cff;
+  --display: "Archivo Black", Impact, "Arial Black", sans-serif;
+  --mono: "Space Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); }
+body {
+  margin: 0; min-height: 100svh; display: grid; grid-template-rows: 1fr auto;
+  color: var(--bone); font-family: var(--mono); font-weight: 700; line-height: 1.5;
+  padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+}
+main { width: 100%; max-width: 760px; margin: 0 auto; padding: 56px 0 40px; display: grid; gap: 36px; justify-items: start; align-content: center; }
+
+.mark { display: grid; gap: 6px; }
+.mark .row { display: flex; gap: 5px; }
+.t {
+  --r: 0deg; --bg: var(--bone); --fg: var(--ink); --sh: var(--pink);
+  display: grid; place-items: center; width: clamp(40px, 11vw, 78px); aspect-ratio: 24 / 30;
+  background: var(--bg); color: var(--fg); font: 400 clamp(26px, 7.4vw, 52px) / 1 var(--display);
+  border: 3px solid var(--ink); outline: 2px solid var(--bone); outline-offset: -5px;
+  box-shadow: 5px 5px 0 var(--sh); transform: rotate(var(--r));
+}
+.t.v { --bg: var(--violet); --fg: var(--yellow); }
+.t.p { --bg: var(--pink); --sh: var(--violet); }
+.t.y { --bg: var(--yellow); }
+.t.pb { --bg: var(--pink); --fg: var(--bone); --sh: var(--violet); }
+.t { outline: 0; border-color: var(--ink); }
+.mark .row:nth-child(2) { margin-left: clamp(0px, 2vw, 14px); }
+
+h1 { margin: 0; font: 400 clamp(26px, 5.6vw, 44px) / 1.05 var(--display); text-transform: uppercase; text-wrap: balance; max-width: 18ch; }
+h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yellow); }
+p { margin: 0; max-width: 52ch; color: #cfc6d8; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn {
+  display: inline-block; padding: 14px 22px; text-decoration: none; text-transform: uppercase; letter-spacing: .08em;
+  font: 700 14px var(--mono); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet);
+  transition: transform .12s, box-shadow .12s;
+}
+.btn.sub { background: var(--pink); color: var(--ink); }
+.btn.yt { background: var(--yellow); color: var(--ink); }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--violet); }
+.btn:focus-visible { outline: 3px solid var(--bone); outline-offset: 3px; }
+
+.soon { border: 3px dashed var(--violet); padding: 16px 18px; width: 100%; max-width: 520px; display: grid; gap: 4px; background: var(--panel); transform: rotate(-.6deg); }
+.soon b { font: 400 18px var(--display); text-transform: uppercase; color: var(--yellow); }
+.soon span { color: #cfc6d8; font-size: 14px; }
+
+footer { max-width: 760px; width: 100%; margin: 0 auto; padding: 20px 0 28px; font-size: 12px; color: #8a8099; letter-spacing: .06em; text-transform: uppercase; }
+
+/* Texture: faded emoji tile behind everything. Fixed, low opacity, never takes clicks. */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .09; filter: saturate(.5);
+  background: url("texture.png") 0 0 / 240px 240px; }
+.eps { width: 100%; display: grid; gap: 22px; }
+.eps h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; }
+.ep { background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); display: grid; gap: 0; max-width: 640px; }
+.ep .screen { aspect-ratio: 16 / 9; background: #120d1a; border-bottom: 3px solid var(--ink); display: grid; place-items: center; }
+.ep iframe { width: 100%; height: 100%; border: 0; display: block; }
+.ep .wait { font: 400 22px var(--display); text-transform: uppercase; color: var(--yellow); text-align: center; padding: 16px; transform: rotate(-2deg); }
+.ep .meta { padding: 14px 16px 16px; display: grid; gap: 6px; }
+.ep .no { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--pink); }
+.ep h3 { margin: 0; font: 400 20px / 1.15 var(--display); text-transform: uppercase; }
+.ep p { font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark" role="img" aria-label="Indie Go Punk">
+    <div class="row">
+      <span class="t" style="--r:-4deg">I</span><span class="t v" style="--r:3deg">N</span><span class="t p" style="--r:-2deg">D</span><span class="t y" style="--r:4deg">I</span><span class="t pb" style="--r:-3deg">E</span>
+    </div>
+    <div class="row">
+      <span class="t v" style="--r:-3deg">G</span><span class="t p" style="--r:4deg">O</span>
+      <span style="width:14px"></span>
+      <span class="t y" style="--r:3deg">P</span><span class="t v" style="--r:-4deg">U</span><span class="t p" style="--r:2deg">N</span><span class="t" style="--r:-3deg">K</span>
+    </div>
+  </div>
+
+  <h1>Indie founders. <em>Unfiltered.</em></h1>
+  <p>A podcast about small indie game studios. Founders talk about making their games, getting players, and the wishlists nobody sees.</p>
+
+  <div class="actions">
+    <a class="btn sub" href="https://www.youtube.com/@indiegopunk?sub_confirmation=1" rel="noopener">Subscribe</a>
+    <a class="btn yt" href="https://www.youtube.com/@indiegopunk" rel="noopener">Watch on YouTube</a>
+  </div>
+
+
+  <section class="eps" aria-labelledby="eps-h">
+    <h2 id="eps-h">Episodes</h2>
+    <div id="eps"></div>
+  </section>
+
+  <div class="soon">
+    <b>More episodes coming soon</b>
+    <span>New conversations with indie studios are on the way. Subscribe to catch them first.</span>
+  </div>
+</main>
+<footer>&copy; Indie Go Punk</footer>
+<script>
+// Episodes. Set `id` to the YouTube video id once the video is Public (a Private video cannot be embedded).
+var EPISODES = [
+  { no: 'Episode 1', title: 'Team Quasar on Third Law', text: 'The founder of Team Quasar talks about Third Law, a 2D action platformer where you shoot to move.', id: null }
+];
+var host = document.getElementById('eps');
+EPISODES.forEach(function (e) {
+  var a = document.createElement('article'); a.className = 'ep';
+  var screen = e.id
+    ? '<div class="screen"><iframe src="https://www.youtube-nocookie.com/embed/' + e.id + '" title="' + e.title + '" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>'
+    : '<div class="screen"><div class="wait">Premiering soon</div></div>';
+  a.innerHTML = screen + '<div class="meta"><span class="no">' + e.no + '</span><h3>' + e.title + '</h3><p>' + e.text + '</p></div>';
+  host.appendChild(a);
+});
+</script>
+</body>
+</html>
