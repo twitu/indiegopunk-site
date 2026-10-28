@@ -32,7 +32,7 @@ body {
   color: var(--bone); font-family: var(--mono); font-weight: 700; line-height: 1.5;
   padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
 }
-main { width: 100%; max-width: 760px; margin: 0 auto; padding: 56px 0 40px; display: grid; gap: 36px; justify-items: start; align-content: center; }
+main { width: 100%; max-width: 1000px; margin: 0 auto; padding: 64px 0 48px; display: grid; gap: 40px; justify-items: center; text-align: center; align-content: center; }
 
 .mark { display: grid; gap: 6px; }
 .mark .row { display: flex; gap: 5px; }
@@ -48,13 +48,14 @@ main { width: 100%; max-width: 760px; margin: 0 auto; padding: 56px 0 40px; disp
 .t.y { --bg: var(--yellow); }
 .t.pb { --bg: var(--pink); --fg: var(--bone); --sh: var(--violet); }
 .t { outline: 0; border-color: var(--ink); }
-.mark .row:nth-child(2) { margin-left: clamp(0px, 2vw, 14px); }
+.mark { justify-items: center; }
+.mark .row { justify-content: center; }
 
-h1 { margin: 0; font: 400 clamp(26px, 5.6vw, 44px) / 1.05 var(--display); text-transform: uppercase; text-wrap: balance; max-width: 18ch; }
+h1 { margin: 0 auto; font: 400 clamp(26px, 5.6vw, 44px) / 1.05 var(--display); text-transform: uppercase; text-wrap: balance; max-width: 20ch; }
 h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yellow); }
-p { margin: 0; max-width: 52ch; color: #cfc6d8; }
+p { margin: 0 auto; max-width: 52ch; color: #cfc6d8; }
 
-.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 .btn {
   display: inline-block; padding: 14px 22px; text-decoration: none; text-transform: uppercase; letter-spacing: .08em;
   font: 700 14px var(--mono); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet);
@@ -65,19 +66,19 @@ p { margin: 0; max-width: 52ch; color: #cfc6d8; }
 .btn:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--violet); }
 .btn:focus-visible { outline: 3px solid var(--bone); outline-offset: 3px; }
 
-.soon { border: 3px dashed var(--violet); padding: 16px 18px; width: 100%; max-width: 520px; display: grid; gap: 4px; background: var(--panel); transform: rotate(-.6deg); }
+.soon { border: 3px dashed var(--violet); padding: 16px 18px; width: 100%; max-width: 520px; text-align: center; display: grid; gap: 4px; background: var(--panel); transform: rotate(-.6deg); }
 .soon b { font: 400 18px var(--display); text-transform: uppercase; color: var(--yellow); }
 .soon span { color: #cfc6d8; font-size: 14px; }
 
-footer { max-width: 760px; width: 100%; margin: 0 auto; padding: 20px 0 28px; font-size: 12px; color: #8a8099; letter-spacing: .06em; text-transform: uppercase; }
+footer { max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; padding: 20px 0 28px; font-size: 12px; color: #8a8099; letter-spacing: .06em; text-transform: uppercase; }
 
 /* Texture: faded emoji tile behind everything. Fixed, low opacity, never takes clicks. */
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .1;
   background: url("texture.png") 0 0 / 300px 300px; }
 .eps { width: 100%; display: grid; gap: 22px; }
-#eps { display: grid; gap: 32px; }
-.eps h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; }
-.ep { background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); display: grid; gap: 0; max-width: 640px; }
+#eps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px; }
+.eps h2 { margin: 0; text-align: center; color: var(--yellow); font: 400 20px var(--display); text-transform: uppercase; }
+.ep { background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); display: grid; grid-template-rows: auto 1fr; text-align: left; }
 .ep .screen { aspect-ratio: 16 / 9; background: #120d1a; border-bottom: 3px solid var(--ink); display: grid; place-items: center; }
 .ep iframe { width: 100%; height: 100%; border: 0; display: block; }
 .ep .wait { font: 400 22px var(--display); text-transform: uppercase; color: var(--yellow); text-align: center; padding: 16px; transform: rotate(-2deg); }
@@ -106,7 +107,6 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 
   <div class="actions">
     <a class="btn sub" href="https://www.youtube.com/@indiegopunk?sub_confirmation=1" rel="noopener">Subscribe</a>
-    <a class="btn yt" href="https://www.youtube.com/@indiegopunk" rel="noopener">Watch on YouTube</a>
   </div>
 
 
