@@ -72,9 +72,10 @@ p { margin: 0; max-width: 52ch; color: #cfc6d8; }
 footer { max-width: 760px; width: 100%; margin: 0 auto; padding: 20px 0 28px; font-size: 12px; color: #8a8099; letter-spacing: .06em; text-transform: uppercase; }
 
 /* Texture: faded emoji tile behind everything. Fixed, low opacity, never takes clicks. */
-body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .09; filter: saturate(.5);
-  background: url("texture.png") 0 0 / 240px 240px; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .1;
+  background: url("texture.png") 0 0 / 300px 300px; }
 .eps { width: 100%; display: grid; gap: 22px; }
+#eps { display: grid; gap: 32px; }
 .eps h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; }
 .ep { background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); display: grid; gap: 0; max-width: 640px; }
 .ep .screen { aspect-ratio: 16 / 9; background: #120d1a; border-bottom: 3px solid var(--ink); display: grid; place-items: center; }
@@ -121,9 +122,10 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 </main>
 <footer>&copy; Indie Go Punk</footer>
 <script>
-// Episodes. Set `id` to the YouTube video id once the video is Public (a Private video cannot be embedded).
+// Episodes, newest first. `id` is the YouTube video id.
 var EPISODES = [
-  { no: 'Episode 1', title: 'Team Quasar on Third Law', text: 'The founder of Team Quasar talks about Third Law, a 2D action platformer where you shoot to move.', id: null }
+  { no: 'Episode 2', title: 'Spook-A-Boo', text: 'A conversation with Wala Interactive about making Spook-A-Boo.', id: 'LToQ5KFiVNQ' },
+  { no: 'Episode 1', title: 'Team Quasar on Third Law', text: 'The founder of Team Quasar talks about Third Law, a 2D action platformer where you shoot to move.', id: 'SNbzYsUCjBk' }
 ];
 var host = document.getElementById('eps');
 EPISODES.forEach(function (e) {
