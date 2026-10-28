@@ -32,7 +32,7 @@ exports.handler = async (event) => {
   if (d.website) return res(200, { ok: true }); // honeypot: bots fill this, people do not
   const clip = (v, n) => String(v || '').trim().slice(0, n);
   const email = clip(d.email, 200), studio = clip(d.studio, 200), note = clip(d.note, 1000);
-  if (!/^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$/.test(email) || !studio) return res(400, { ok: false, error: 'Add a studio name and a valid email.' });
+  if (!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(email) || !studio) return res(400, { ok: false, error: 'Add a studio name and a valid email.' });
   await db.send(new PutItemCommand({ TableName: process.env.TABLE, Item: {
     id: { S: randomUUID() }, at: { S: new Date().toISOString() },
     email: { S: email }, studio: { S: studio }, note: { S: note || '-' } } }));
