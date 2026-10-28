@@ -95,16 +95,18 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .join input:focus-visible, .join textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 .join button { font: 700 14px var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--yellow); color: var(--ink); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet); padding: 12px 20px; cursor: pointer; justify-self: start; }
 .join button:disabled { opacity: .6; cursor: wait; }
+.short { display: none; }
 .join .hp { position: absolute; left: -9999px; }
 #join-msg { min-height: 1.4em; font-size: 14px; color: var(--yellow); }
 @media (max-width: 600px) {
-  main { padding: 20px 0 96px; gap: 20px; }
+  main { padding: 20px 0 32px; gap: 18px; }
   .t { width: 40px; font-size: 26px; border-width: 2px; box-shadow: 3px 3px 0 var(--sh); }
   .mark { gap: 4px; } .mark .row { gap: 3px; }
   h1 { font-size: 22px; }
-  main > p { display: none; }
-  .actions { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--ink); border-top: 3px solid var(--pink); }
-  .actions .btn { width: 100%; text-align: center; }
+  main > p { font-size: 13px; margin-top: -6px; }
+  .short { display: inline; } .full { display: none; }
+  .actions { margin-top: -8px; }
+  .actions .btn { padding: 10px 24px; font-size: 13px; }
   .eps h2 { display: none; }
   #eps { gap: 24px; }
 }
@@ -125,7 +127,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   </div>
 
   <h1>Indie founders. <em>Unfiltered.</em></h1>
-  <p>A podcast about small indie game studios. Founders talk about making their games, getting players, and the wishlists nobody sees.</p>
+  <p><span class="full">A podcast about small indie game studios. Founders talk about making their games, getting players, and the wishlists nobody sees.</span><span class="short">A podcast about small indie game studios.</span></p>
 
   <div class="actions">
     <a class="btn sub" href="https://www.youtube.com/@indiegopunk?sub_confirmation=1" rel="noopener">Subscribe</a>
