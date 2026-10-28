@@ -86,6 +86,28 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .ep .no { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--pink); }
 .ep h3 { margin: 0; font: 400 20px / 1.15 var(--display); text-transform: uppercase; }
 .ep p { font-size: 14px; }
+
+.join { width: 100%; max-width: 560px; display: grid; gap: 12px; text-align: left; background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--pink); padding: 20px; }
+.join h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; color: var(--yellow); }
+.join p { margin: 0; font-size: 14px; max-width: none; }
+.join label { display: grid; gap: 4px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #cfc6d8; }
+.join input, .join textarea { font: 700 15px var(--mono); color: var(--bone); background: var(--ink); border: 2px solid var(--violet); padding: 10px 12px; width: 100%; border-radius: 0; }
+.join input:focus-visible, .join textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.join button { font: 700 14px var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--yellow); color: var(--ink); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet); padding: 12px 20px; cursor: pointer; justify-self: start; }
+.join button:disabled { opacity: .6; cursor: wait; }
+.join .hp { position: absolute; left: -9999px; }
+#join-msg { min-height: 1.4em; font-size: 14px; color: var(--yellow); }
+@media (max-width: 600px) {
+  main { padding: 20px 0 96px; gap: 20px; }
+  .t { width: 40px; font-size: 26px; border-width: 2px; box-shadow: 3px 3px 0 var(--sh); }
+  .mark { gap: 4px; } .mark .row { gap: 3px; }
+  h1 { font-size: 22px; }
+  main > p { display: none; }
+  .actions { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--ink); border-top: 3px solid var(--pink); }
+  .actions .btn { width: 100%; text-align: center; }
+  .eps h2 { display: none; }
+  #eps { gap: 24px; }
+}
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 </style>
 </head>
@@ -115,6 +137,18 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
     <div id="eps"></div>
   </section>
 
+
+  <form class="join" id="join" novalidate>
+    <h2>Want your studio on the show?</h2>
+    <p>Tell us about your game. We will get in touch.</p>
+    <label>Studio or game<input name="studio" required maxlength="200" autocomplete="organization"></label>
+    <label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label>
+    <label>Anything else (optional)<textarea name="note" rows="3" maxlength="1000"></textarea></label>
+    <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">Send</button>
+    <div id="join-msg" role="status"></div>
+  </form>
+
   <div class="soon">
     <b>More episodes coming soon</b>
     <span>New conversations with indie studios are on the way. Subscribe to catch them first.</span>
@@ -135,6 +169,20 @@ EPISODES.forEach(function (e) {
     : '<div class="screen"><div class="wait">Premiering soon</div></div>';
   a.innerHTML = screen + '<div class="meta"><span class="no">' + e.no + '</span><h3>' + e.title + '</h3><p>' + e.text + '</p></div>';
   host.appendChild(a);
+});
+</script>
+<script>
+var JOIN_URL = 'https://vsmkvuaigpcb54ojm4dni2cc2q0gwinj.lambda-url.ap-south-1.on.aws/';
+var jf = document.getElementById('join'), jm = document.getElementById('join-msg');
+jf.addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  var d = Object.fromEntries(new FormData(jf)), btn = jf.querySelector('button');
+  if (!d.studio.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email.trim())) { jm.textContent = 'Add a studio name and a valid email.'; return; }
+  btn.disabled = true; jm.textContent = 'Sending...';
+  fetch(JOIN_URL, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) })
+    .then(function (r) { if (!r.ok) throw 0; jf.reset(); jm.textContent = 'Got it. Thank you.'; })
+    .catch(function () { jm.textContent = 'Something went wrong. Please try again.'; })
+    .then(function () { btn.disabled = false; });
 });
 </script>
 </body>
