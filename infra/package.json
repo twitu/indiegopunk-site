@@ -1,0 +1,8 @@
+{
+  "name": "indiegopunk-interest-infra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "deploy": "cdk deploy", "diff": "cdk diff" },
+  "dependencies": { "aws-cdk-lib": "^2.150.0", "constructs": "^10.3.0" },
+  "devDependencies": { "aws-cdk": "^2.150.0" }
+}
