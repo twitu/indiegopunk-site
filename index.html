@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Indie Go Punk</title>
-<meta name="description" content="A podcast about small indie game studios. Founders talk about making, marketing and shipping their games.">
+<meta name="description" content="A podcast about indie game studios. Founders talk about making, marketing and shipping their games.">
 <meta property="og:title" content="Indie Go Punk">
-<meta property="og:description" content="A podcast about small indie game studios.">
+<meta property="og:description" content="A podcast about indie game studios.">
 <meta property="og:image" content="https://indiegopunk.com/og.jpg">
 <meta property="og:url" content="https://indiegopunk.com">
 <meta name="theme-color" content="#0d0a12">
@@ -95,7 +95,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .join input:focus-visible, .join textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 .join button { font: 700 14px var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--yellow); color: var(--ink); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet); padding: 12px 20px; cursor: pointer; justify-self: start; }
 .join button:disabled { opacity: .6; cursor: wait; }
-.short { display: none; }
+.bottom-actions { display: none; }
 .join .hp { position: absolute; left: -9999px; }
 #join-msg { min-height: 1.4em; font-size: 14px; color: var(--yellow); }
 @media (max-width: 600px) {
@@ -104,9 +104,8 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   .mark { gap: 4px; } .mark .row { gap: 3px; }
   h1 { font-size: 22px; }
   main > p { font-size: 13px; margin-top: -6px; }
-  .short { display: inline; } .full { display: none; }
-  .actions { margin-top: -8px; }
-  .actions .btn { padding: 10px 24px; font-size: 13px; }
+  .top-actions { display: none; }
+  .bottom-actions { display: flex; }
   .eps h2 { display: none; }
   #eps { gap: 24px; }
 }
@@ -127,9 +126,9 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   </div>
 
   <h1>Indie founders. <em>Unfiltered.</em></h1>
-  <p><span class="full">A podcast about small indie game studios. Founders talk about making their games, getting players, and the wishlists nobody sees.</span><span class="short">A podcast about small indie game studios.</span></p>
+  <p>A podcast about indie game studios. Founders talk about making their games, getting players, and the wishlists nobody sees.</p>
 
-  <div class="actions">
+  <div class="actions top-actions">
     <a class="btn sub" href="https://www.youtube.com/@indiegopunk?sub_confirmation=1" rel="noopener">Subscribe</a>
   </div>
 
@@ -155,6 +154,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
     <b>More episodes coming soon</b>
     <span>New conversations with indie studios are on the way. Subscribe to catch them first.</span>
   </div>
+  <div class="actions bottom-actions"><a class="btn sub" href="https://www.youtube.com/@indiegopunk?sub_confirmation=1" rel="noopener">Subscribe</a></div>
 </main>
 <footer>&copy; Indie Go Punk</footer>
 <script>
