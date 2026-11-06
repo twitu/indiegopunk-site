@@ -48,3 +48,34 @@ const url = fn.addFunctionUrl({
   cors: { allowedOrigins: ['https://indiegopunk.com', 'https://www.indiegopunk.com', 'http://127.0.0.1:8765'], allowedMethods: [lambda.HttpMethod.POST], allowedHeaders: ['content-type'] },
 });
 new cdk.CfnOutput(stack, 'SubmitUrl', { value: url.url });
+
+// Public asset hub: one cheap S3 bucket. Only keys under public/ are world readable (for Buffer).
+// Deploy it alone: npx cdk deploy IndieGoPunkAssetsStack
+const s3 = require('aws-cdk-lib/aws-s3');
+const iam = require('aws-cdk-lib/aws-iam');
+
+const assets = new cdk.Stack(app, 'IndieGoPunkAssetsStack', { env: { region: 'ap-south-1', account: process.env.CDK_DEFAULT_ACCOUNT } });
+cdk.Tags.of(assets).add('Project', 'indiegopunk');
+
+const bucket = new s3.Bucket(assets, 'Assets', {
+  bucketName: `indiegopunk-assets-${assets.account}`,
+  encryption: s3.BucketEncryption.S3_MANAGED,
+  enforceSSL: true,
+  versioned: false,
+  blockPublicAccess: new s3.BlockPublicAccess({ blockPublicAcls: true, ignorePublicAcls: true, blockPublicPolicy: false, restrictPublicBuckets: false }),
+  cors: [{ allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.HEAD], allowedOrigins: ['*'], allowedHeaders: ['*'], maxAge: 3600 }],
+  lifecycleRules: [
+    { id: 'abort-multipart', abortIncompleteMultipartUploadAfter: cdk.Duration.days(7) },
+    { id: 'expire-tmp', prefix: 'tmp/', expiration: cdk.Duration.days(30) },
+  ],
+  removalPolicy: cdk.RemovalPolicy.RETAIN,
+});
+bucket.addToResourcePolicy(new iam.PolicyStatement({
+  sid: 'PublicReadPublicPrefix',
+  principals: [new iam.AnyPrincipal()],
+  actions: ['s3:GetObject'],
+  resources: [bucket.arnForObjects('public/*')],
+}));
+
+new cdk.CfnOutput(assets, 'BucketName', { value: bucket.bucketName });
+new cdk.CfnOutput(assets, 'PublicBaseUrl', { value: `https://${bucket.bucketName}.s3.${assets.region}.amazonaws.com/public/` });
