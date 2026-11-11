@@ -96,6 +96,19 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .join button { font: 700 14px var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--yellow); color: var(--ink); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--violet); padding: 12px 20px; cursor: pointer; justify-self: start; }
 .join button:disabled { opacity: .6; cursor: wait; }
 .bottom-actions { display: none; }
+.jams { width: 100%; max-width: 560px; display: grid; gap: 12px; text-align: left; background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); padding: 20px; }
+.jams h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; color: var(--yellow); }
+.jams p { margin: 0; font-size: 14px; max-width: none; }
+#jam-next { display: grid; gap: 8px; }
+#jam-next a { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; text-decoration: none; border: 2px solid #3d2f5c; padding: 8px 10px; }
+#jam-next a:hover { border-color: var(--pink); }
+#jam-next a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+#jam-next .d { background: #2b2140; text-align: center; padding: 4px 0; font: 400 20px / 1 var(--display); }
+#jam-next .d small { display: block; font: 700 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #b39ddb; }
+#jam-next .n { font: 400 15px / 1.2 var(--display); text-transform: uppercase; overflow-wrap: anywhere; }
+#jam-next .n i { font-style: normal; color: var(--yellow); margin-right: 6px; }
+#jam-next .w { font-size: 12px; color: #b39ddb; text-transform: uppercase; letter-spacing: .06em; }
+.jams .btn { justify-self: start; }
 .join .hp { position: absolute; left: -9999px; }
 #join-msg { min-height: 1.4em; font-size: 14px; color: var(--yellow); }
 @media (max-width: 600px) {
@@ -140,6 +153,13 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   </section>
 
 
+  <section class="jams" aria-labelledby="jam-h">
+    <h2 id="jam-h">Game jam calendar</h2>
+    <p>Find your next game jam. Dates, themes and sign-up links for indie developers.</p>
+    <div id="jam-next" aria-live="polite"></div>
+    <a class="btn yt" href="calendars/">Open the calendar</a>
+  </section>
+
   <form class="join" id="join" novalidate>
     <h2>Want your studio on the show?</h2>
     <p>Tell us about your game. We will get in touch.</p>
@@ -174,6 +194,27 @@ EPISODES.forEach(function (e) {
   a.innerHTML = screen + '<div class="meta"><span class="no">' + e.no + '</span><h3>' + e.title + '</h3><p>' + e.text + '</p></div>';
   host.appendChild(a);
 });
+</script>
+<script>
+// Next three jams from the calendar data. If the fetch fails, the button still works.
+(function () {
+  var host = document.getElementById('jam-next'), M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var t = new Date(), today = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+  fetch('calendars/jams.json').then(function (r) { return r.json(); }).then(function (d) {
+    d.jams.filter(function (j) { return j.end >= today; })
+      .sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || (a.start < b.start ? -1 : 1); })
+      .slice(0, 3).sort(function (a, b) { return a.start < b.start ? -1 : 1; })
+      .forEach(function (j) {
+        var a = document.createElement('a'), p = j.start.split('-'), live = j.start <= today;
+        a.href = 'calendars/'; var dd = document.createElement('div'); dd.className = 'd';
+        dd.textContent = String(+p[2]); var sm = document.createElement('small'); sm.textContent = M[+p[1] - 1]; dd.insertBefore(sm, dd.firstChild);
+        var b = document.createElement('div'), n = document.createElement('div'), w = document.createElement('div');
+        n.className = 'n'; if (j.featured) { var i = document.createElement('i'); i.textContent = '\u2605'; n.appendChild(i); }
+        n.appendChild(document.createTextNode(j.name)); w.className = 'w'; w.textContent = (live ? 'Live now' : j.format === 'in-person' ? (j.location || 'In person') : 'Online');
+        b.appendChild(n); b.appendChild(w); a.appendChild(dd); a.appendChild(b); host.appendChild(a);
+      });
+  }).catch(function () {});
+})();
 </script>
 <script>
 var JOIN_URL = 'https://vsmkvuaigpcb54ojm4dni2cc2q0gwinj.lambda-url.ap-south-1.on.aws/';
