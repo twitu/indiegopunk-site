@@ -1,0 +1,31 @@
+name: Submit a game jam
+description: Tell us about a game jam for the calendar at indiegopunk.com/calendars
+title: "Jam: "
+labels: ["jam"]
+body:
+  - type: input
+    id: name
+    attributes: { label: Jam name }
+    validations: { required: true }
+  - type: input
+    id: url
+    attributes: { label: Official page (https link), description: itch.io page, Devpost page or the jam's own site. }
+    validations: { required: true }
+  - type: input
+    id: dates
+    attributes: { label: Start and end date, placeholder: "2027-01-29 to 2027-01-31" }
+    validations: { required: true }
+  - type: input
+    id: host
+    attributes: { label: Host or organiser }
+    validations: { required: true }
+  - type: dropdown
+    id: format
+    attributes: { label: Format, options: [Online, In person, Hybrid] }
+    validations: { required: true }
+  - type: input
+    id: location
+    attributes: { label: City and country (if in person) }
+  - type: textarea
+    id: extra
+    attributes: { label: Anything else, description: "Theme, prizes, solo or team, rules." }

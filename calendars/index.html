@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Jam Calendar | Indie Go Punk</title>
+<meta name="description" content="Upcoming game jams for indie developers and fans. Dates, links and themes in one place. Filter by online or in person, solo or team.">
+<meta property="og:title" content="Game Jam Calendar | Indie Go Punk">
+<meta property="og:description" content="Upcoming game jams for indie developers and fans.">
+<meta property="og:image" content="https://indiegopunk.com/og.jpg">
+<meta property="og:url" content="https://indiegopunk.com/calendars/">
+<meta name="theme-color" content="#0d0a12">
+<link rel="icon" href="../icon.png">
+<link rel="alternate" type="text/calendar" title="Game jams" href="jams.ics">
+<style>
+@font-face { font-family: "Archivo Black"; src: url("../fonts/ArchivoBlack-Regular.ttf"); font-display: swap; }
+@font-face { font-family: "Space Mono"; font-weight: 700; src: url("../fonts/SpaceMono-Bold.ttf"); font-display: swap; }
+/* Layout: one centred column. Header, filters, list or month grid, footer. Same tokens as the home page. */
+:root {
+  --ink: #0d0a12; --panel: #1b1426; --bone: #f2ece0; --pink: #ff2e88; --yellow: #f4ff3a; --violet: #7a2cff;
+  --muted: #cfc6d8; --dim: #8a8099;
+  --display: "Archivo Black", Impact, "Arial Black", sans-serif;
+  --mono: "Space Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); }
+body {
+  margin: 0; min-height: 100svh; display: grid; grid-template-rows: 1fr auto;
+  color: var(--bone); font-family: var(--mono); font-weight: 700; line-height: 1.5;
+  padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .1; background: url("../texture.png") 0 0 / 300px 300px; }
+a { color: inherit; }
+main { width: 100%; max-width: 920px; margin: 0 auto; padding: 28px 0 48px; display: grid; gap: 28px; }
+
+.home { justify-self: start; display: inline-flex; gap: 4px; text-decoration: none; }
+.home .t { display: grid; place-items: center; width: 28px; aspect-ratio: 24 / 30; background: var(--bone); color: var(--ink); font: 400 18px / 1 var(--display); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--pink); transform: rotate(var(--r, 0deg)); }
+.home .t.v { background: var(--violet); color: var(--yellow); }
+.home .t.p { background: var(--pink); box-shadow: 3px 3px 0 var(--violet); }
+.home .t.y { background: var(--yellow); }
+.home:focus-visible { outline: 3px solid var(--bone); outline-offset: 4px; }
+
+header.hero { display: grid; gap: 12px; }
+h1 { margin: 0; font: 400 clamp(30px, 7vw, 56px) / 1 var(--display); text-transform: uppercase; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yellow); }
+.lede { margin: 0; max-width: 56ch; color: var(--muted); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+.stats b { color: var(--yellow); font: 400 18px var(--display); margin-right: 6px; }
+
+.bar { display: grid; gap: 14px; background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); padding: 16px; }
+.bar-top { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+.seg { display: inline-flex; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--pink); }
+.seg button { font: 700 13px var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 9px 16px; border: 0; background: var(--bone); color: var(--ink); cursor: pointer; }
+.seg button + button { border-left: 3px solid var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--yellow); }
+.search { flex: 1 1 200px; min-width: 0; font: 700 14px var(--mono); color: var(--bone); background: var(--ink); border: 2px solid var(--violet); padding: 10px 12px; border-radius: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 7px 12px; background: transparent; color: var(--bone); border: 2px solid var(--violet); cursor: pointer; border-radius: 0; }
+.chip[aria-pressed="true"] { background: var(--pink); border-color: var(--pink); color: var(--ink); }
+.chip.clear { border-style: dashed; color: var(--muted); }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
+.month-h { margin: 8px 0 -6px; font: 400 20px var(--display); text-transform: uppercase; color: var(--yellow); display: flex; align-items: center; gap: 12px; }
+.month-h::after { content: ""; flex: 1; border-top: 3px dashed var(--violet); }
+#list { display: grid; gap: 20px; }
+
+.jam { display: grid; grid-template-columns: 84px 1fr; background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 #4a2a8a; }
+.jam.live { box-shadow: 6px 6px 0 #a3205f; }
+.jam.past { opacity: .6; }
+.date { background: #2b2140; color: var(--bone); display: grid; align-content: center; justify-items: center; padding: 10px 4px; border-right: 3px solid var(--ink); text-align: center; }
+.jam.live .date { background: #3a2f12; color: var(--yellow); }
+.jam.feat { border-color: #8a8f1f; }
+.jam.feat .date { border-right-color: #8a8f1f; }
+.date .m { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.date .d { font: 400 34px / 1 var(--display); }
+.date .to { font-size: 11px; margin-top: 4px; text-transform: uppercase; color: var(--dim); }
+.body { padding: 14px 16px 16px; display: grid; gap: 8px; min-width: 0; }
+.body h3 { margin: 0; color: var(--bone); font: 400 20px / 1.15 var(--display); text-transform: uppercase; overflow-wrap: anywhere; }
+.host { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #b39ddb; }
+.note { margin: 0; font-size: 14px; color: var(--muted); }
+.theme { font-size: 13px; color: var(--bone); }
+.theme i { font-style: normal; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; margin-right: 6px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border: 2px solid #3d2f5c; color: var(--muted); }
+.tag.status { border-color: var(--yellow); color: var(--yellow); }
+.tag.soon { border-color: var(--pink); color: #ff7ab4; }
+.tag.star { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+.star-i { color: var(--yellow); margin-right: 6px; }
+.tag.past { border-style: dashed; }
+.acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.btn { display: inline-block; padding: 9px 16px; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; font: 700 12px var(--mono); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--violet); background: var(--pink); color: var(--ink); cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.btn.alt { background: var(--yellow); }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--violet); }
+
+.empty { text-align: center; border: 3px dashed var(--violet); padding: 28px 18px; background: var(--panel); transform: rotate(-.5deg); color: var(--muted); }
+.empty b { display: block; font: 400 20px var(--display); text-transform: uppercase; color: var(--yellow); margin-bottom: 4px; }
+
+/* Month grid */
+#grid-wrap { display: grid; gap: 16px; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.nav h2 { margin: 0; font: 400 clamp(18px, 4vw, 26px) var(--display); text-transform: uppercase; color: var(--yellow); text-align: center; flex: 1; }
+.nav button { font: 400 18px var(--display); width: 44px; height: 44px; border: 3px solid var(--ink); background: var(--bone); color: var(--ink); box-shadow: 4px 4px 0 var(--pink); cursor: pointer; }
+.nav button:disabled { opacity: .35; cursor: default; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 3px solid var(--ink); background: var(--panel); box-shadow: 6px 6px 0 var(--violet); }
+.dow { padding: 8px 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-align: center; color: var(--dim); border-bottom: 2px solid var(--ink); }
+.cell { min-height: 92px; padding: 4px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); display: grid; align-content: start; gap: 3px; min-width: 0; }
+.cell:nth-child(7n) { border-right: 0; }
+.cell.out { opacity: .35; }
+.cell.today .n { background: var(--pink); color: var(--ink); }
+.cell.span { background: rgba(122, 44, 255, .22); }
+.cell .n { font-size: 12px; justify-self: start; padding: 0 5px; }
+.pill { font: 700 11px / 1.2 var(--mono); text-align: left; padding: 3px 5px; background: var(--yellow); color: var(--ink); border: 0; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; border-radius: 0; }
+.pill.sel { background: var(--pink); }
+.more { font-size: 11px; color: var(--muted); padding-left: 4px; }
+#detail { display: grid; gap: 12px; }
+.hint { font-size: 13px; color: var(--dim); text-align: center; }
+
+.add { display: grid; gap: 10px; background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--pink); padding: 18px 20px; }
+.add h2 { margin: 0; font: 400 20px var(--display); text-transform: uppercase; color: var(--yellow); }
+.add p { margin: 0; font-size: 14px; color: var(--muted); }
+.add .acts { margin: 0; }
+footer { max-width: 920px; width: 100%; margin: 0 auto; text-align: center; padding: 20px 0 28px; font-size: 12px; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
+footer a { margin: 0 8px; }
+
+@media (max-width: 600px) {
+  main { padding-top: 18px; gap: 20px; }
+  .jam { grid-template-columns: 64px 1fr; }
+  .date .d { font-size: 26px; }
+  .body h3 { font-size: 17px; }
+  .cell { min-height: 56px; }
+  /* On small screens the grid shows dots, the detail panel carries the names. */
+  .pill { font-size: 0; height: 8px; padding: 0; }
+  .more { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="home" href="../" aria-label="Indie Go Punk home">
+    <span class="t" style="--r:-4deg">I</span><span class="t v" style="--r:3deg">G</span><span class="t p" style="--r:-2deg">P</span><span class="t y" style="--r:4deg">!</span>
+  </a>
+
+  <header class="hero">
+    <h1>Game jam <em>calendar</em></h1>
+    <p class="lede">Find your next jam. Dates, themes and sign-up links for indie developers and anyone who loves watching games get made in a weekend.</p>
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </header>
+
+  <section class="bar" aria-label="View and filters">
+    <div class="bar-top">
+      <div class="seg" role="group" aria-label="View">
+        <button type="button" id="v-list" aria-pressed="true">List</button>
+        <button type="button" id="v-grid" aria-pressed="false">Month</button>
+      </div>
+      <input class="search" id="q" type="search" placeholder="Search jams, hosts, themes" aria-label="Search jams">
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section id="list" aria-live="polite"></section>
+  <section id="grid-wrap" hidden>
+    <div class="nav">
+      <button type="button" id="prev" aria-label="Previous month">&larr;</button>
+      <h2 id="mname"></h2>
+      <button type="button" id="next" aria-label="Next month">&rarr;</button>
+    </div>
+    <div class="cal" id="cal"></div>
+    <div class="hint" id="hint">Tap a jam on the grid for details.</div>
+    <div id="detail"></div>
+  </section>
+
+  <section class="add">
+    <h2>Know a jam we missed?</h2>
+    <p>Send it to us. We check the dates on the official page before it goes on the calendar. You can also add the whole list to your own calendar app.</p>
+    <div class="acts">
+      <a class="btn" id="submit" href="https://github.com/twitu/indiegopunk-site/issues/new?template=submit-jam.yml" rel="noopener">Submit a jam</a>
+      <a class="btn alt" href="jams.ics">Subscribe (.ics)</a>
+    </div>
+  </section>
+</main>
+<footer><a href="../">Home</a> &middot; &copy; Indie Go Punk</footer>
+
+<script>
+(function () {
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var state = { jams: [], view: 'list', f: {}, q: '', month: null, sel: null };
+  var $ = function (id) { return document.getElementById(id); };
+
+  // Dates are plain YYYY-MM-DD strings. Compare them as strings, show them in the viewer's own calendar.
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function parse(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addDays(s, n) { var d = parse(s); d.setDate(d.getDate() + n); return iso(d); }
+  var TODAY = iso(new Date());
+  function days(a, b) { return Math.round((parse(b) - parse(a)) / 864e5); }
+  function status(j) { return j.end < TODAY ? 'past' : j.start <= TODAY ? 'live' : 'upcoming'; }
+  function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : '#'; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  var FILTERS = [
+    { key: 'live', label: 'Live or soon', test: function (j) { var s = status(j); return s === 'live' || (s === 'upcoming' && days(TODAY, j.start) <= 30); } },
+    { key: 'pop', label: '\u2605 Popular', test: function (j) { return !!j.featured; } },
+    { key: 'online', label: 'Online', test: function (j) { return j.format === 'online' || j.format === 'hybrid'; } },
+    { key: 'person', label: 'In person', test: function (j) { return j.format === 'in-person' || j.format === 'hybrid'; } },
+    { key: 'solo', label: 'Solo friendly', test: function (j) { return j.team === 'solo' || j.team === 'both'; } },
+    { key: 'team', label: 'Team friendly', test: function (j) { return j.team === 'team' || j.team === 'both'; } },
+    { key: 'prize', label: 'Prizes', test: function (j) { return !!j.prize; } },
+    { key: 'weekend', label: 'Under 72 hours', test: function (j) { return j.duration_hours != null && j.duration_hours <= 72; } },
+    { key: 'past', label: 'Show past', test: null }
+  ];
+
+  function visible() {
+    var q = state.q.trim().toLowerCase();
+    return state.jams.filter(function (j) {
+      if (!state.f.past && status(j) === 'past') return false;
+      for (var i = 0; i < FILTERS.length; i++) { var f = FILTERS[i]; if (f.test && state.f[f.key] && !f.test(j)) return false; }
+      if (q && [j.name, j.host, j.theme, j.location, j.note, j.platform].join(' ').toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+  }
+
+  function fmtRange(j) {
+    var a = parse(j.start), b = parse(j.end), o = { day: 'numeric', month: 'short' };
+    var s = a.toLocaleDateString(undefined, o);
+    return j.start === j.end ? s : s + ' to ' + b.toLocaleDateString(undefined, o);
+  }
+
+  function ics(j) {
+    var stamp = TODAY.replace(/-/g, '') + 'T000000Z';
+    var esc = function (t) { return String(t || '').replace(/[\\;,]/g, '\\$&').replace(/\n/g, '\\n'); };
+    return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Indie Go Punk//Game Jams//EN', 'BEGIN:VEVENT',
+      'UID:' + j.id + '@indiegopunk.com', 'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + j.start.replace(/-/g, ''), 'DTEND;VALUE=DATE:' + addDays(j.end, 1).replace(/-/g, ''),
+      'SUMMARY:' + esc(j.name), 'URL:' + j.url, 'DESCRIPTION:' + esc((j.note ? j.note + ' ' : '') + j.url),
+      j.location ? 'LOCATION:' + esc(j.location) : 'LOCATION:Online', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  }
+  function download(j) {
+    var a = el('a'); a.href = URL.createObjectURL(new Blob([ics(j)], { type: 'text/calendar' }));
+    a.download = j.id + '.ics'; document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  function card(j) {
+    var st = status(j), c = el('article', 'jam ' + st);
+    var d = parse(j.start), date = el('div', 'date');
+    date.appendChild(el('span', 'm', MONTHS[d.getMonth()].slice(0, 3)));
+    date.appendChild(el('span', 'd', String(d.getDate())));
+    if (j.end !== j.start) date.appendChild(el('span', 'to', days(j.start, j.end) + 1 + ' days'));
+    var b = el('div', 'body');
+    b.appendChild(el('span', 'host', j.host));
+    var h = el('h3'); if (j.featured) { h.appendChild(el('span', 'star-i', '\u2605')); c.classList.add('feat'); } h.appendChild(document.createTextNode(j.name)); b.appendChild(h);
+    var tags = el('div', 'tags');
+    if (j.featured) tags.appendChild(el('span', 'tag star', '\u2605 Popular'));
+    if (st === 'live') tags.appendChild(el('span', 'tag status', 'Live now'));
+    else if (st === 'upcoming' && days(TODAY, j.start) <= 14) tags.appendChild(el('span', 'tag soon', days(TODAY, j.start) === 0 ? 'Starts today' : 'In ' + days(TODAY, j.start) + ' days'));
+    else if (st === 'past') tags.appendChild(el('span', 'tag past', 'Ended'));
+    tags.appendChild(el('span', 'tag', fmtRange(j)));
+    tags.appendChild(el('span', 'tag', j.format === 'in-person' ? (j.location || 'In person') : j.format === 'hybrid' ? 'Hybrid' + (j.location ? ' / ' + j.location : '') : 'Online'));
+    tags.appendChild(el('span', 'tag', { solo: 'Solo', team: 'Teams', both: 'Solo or team' }[j.team] || 'Solo or team'));
+    if (j.prize) tags.appendChild(el('span', 'tag', 'Prizes'));
+    b.appendChild(tags);
+    if (j.theme) { var t = el('div', 'theme'); t.appendChild(el('i', null, 'Theme')); t.appendChild(document.createTextNode(j.theme)); b.appendChild(t); }
+    if (j.note) b.appendChild(el('p', 'note', j.note));
+    var acts = el('div', 'acts'), a = el('a', 'btn', 'Jam page'); a.href = safeUrl(j.url); a.rel = 'noopener'; a.target = '_blank';
+    var s = el('button', 'btn alt', 'Add to calendar'); s.type = 'button'; s.onclick = function () { download(j); };
+    acts.appendChild(a); acts.appendChild(s); b.appendChild(acts);
+    c.appendChild(date); c.appendChild(b); return c;
+  }
+
+  function empty() {
+    var e = el('div', 'empty'); e.appendChild(el('b', null, 'No jams match'));
+    e.appendChild(document.createTextNode('Clear a filter or search for something else.')); return e;
+  }
+
+  function renderList(rows) {
+    var host = $('list'); host.textContent = '';
+    if (!rows.length) { host.appendChild(empty()); return; }
+    var last = '';
+    rows.forEach(function (j) {
+      var d = parse(j.start), key = d.getFullYear() + '-' + d.getMonth();
+      if (key !== last) { last = key; host.appendChild(el('h2', 'month-h', MONTHS[d.getMonth()] + ' ' + d.getFullYear())); }
+      host.appendChild(card(j));
+    });
+  }
+
+  function renderGrid(rows) {
+    var m = state.month, first = new Date(m.y, m.m, 1), lead = (first.getDay() + 6) % 7;
+    $('mname').textContent = MONTHS[m.m] + ' ' + m.y;
+    var cal = $('cal'); cal.textContent = '';
+    DOW.forEach(function (n) { cal.appendChild(el('div', 'dow', n)); });
+    var start = new Date(m.y, m.m, 1 - lead), total = Math.ceil((lead + new Date(m.y, m.m + 1, 0).getDate()) / 7) * 7;
+    for (var i = 0; i < total; i++) {
+      var d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i), s = iso(d);
+      var cell = el('div', 'cell' + (d.getMonth() !== m.m ? ' out' : '') + (s === TODAY ? ' today' : ''));
+      cell.appendChild(el('span', 'n', String(d.getDate())));
+      var active = rows.filter(function (j) { return j.start <= s && s <= j.end; });
+      if (active.length) cell.classList.add('span');
+      var starts = active.filter(function (j) { return j.start === s || (d.getDay() === 1 && j.start < s); });
+      starts.slice(0, 2).forEach(function (j) {
+        var p = el('button', 'pill' + (state.sel === j.id ? ' sel' : ''), j.name); p.type = 'button'; p.title = j.name;
+        p.setAttribute('aria-label', j.name + ', ' + fmtRange(j));
+        p.onclick = function () { state.sel = j.id; render(); $('detail').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); };
+        cell.appendChild(p);
+      });
+      if (starts.length > 2) cell.appendChild(el('span', 'more', '+' + (starts.length - 2) + ' more'));
+      cal.appendChild(cell);
+    }
+    var inMonth = rows.filter(function (j) { return j.start <= iso(new Date(m.y, m.m + 1, 0)) && j.end >= iso(first); });
+    var det = $('detail'); det.textContent = '';
+    var shown = inMonth.filter(function (j) { return state.sel ? j.id === state.sel : false; });
+    // On a phone the grid shows dots, so list the whole month under it when nothing is picked.
+    (shown.length ? shown : (matchMedia('(max-width: 600px)').matches || !inMonth.length ? inMonth : [])).forEach(function (j) { det.appendChild(card(j)); });
+    if (!inMonth.length) det.appendChild(empty());
+    $('hint').hidden = !inMonth.length;
+  }
+
+  function render() {
+    var rows = visible();
+    var upcoming = state.jams.filter(function (j) { return status(j) !== 'past'; });
+    var live = upcoming.filter(function (j) { return status(j) === 'live'; });
+    $('stats').innerHTML = '';
+    [[live.length, 'live now'], [upcoming.length, 'coming up'], [rows.length, 'match your filters']].forEach(function (p) {
+      var s = el('span'); s.appendChild(el('b', null, String(p[0]))); s.appendChild(document.createTextNode(p[1])); $('stats').appendChild(s);
+    });
+    $('list').hidden = state.view !== 'list'; $('grid-wrap').hidden = state.view !== 'grid';
+    $('v-list').setAttribute('aria-pressed', state.view === 'list'); $('v-grid').setAttribute('aria-pressed', state.view === 'grid');
+    if (state.view === 'list') renderList(rows); else renderGrid(rows);
+    document.querySelectorAll('.chip[data-k]').forEach(function (c) { c.setAttribute('aria-pressed', !!state.f[c.dataset.k]); });
+    $('clear').hidden = !Object.keys(state.f).some(function (k) { return state.f[k]; }) && !state.q;
+  }
+
+  function init(data) {
+    state.jams = (data.jams || []).slice().sort(function (a, b) { return a.start < b.start ? -1 : a.start > b.start ? 1 : a.end < b.end ? -1 : 1; });
+    var t = new Date(); state.month = { y: t.getFullYear(), m: t.getMonth() };
+    var chips = $('chips');
+    FILTERS.forEach(function (f) {
+      var c = el('button', 'chip', f.label); c.type = 'button'; c.dataset.k = f.key; c.setAttribute('aria-pressed', 'false');
+      c.onclick = function () { state.f[f.key] = !state.f[f.key]; render(); }; chips.appendChild(c);
+    });
+    var clr = el('button', 'chip clear', 'Clear'); clr.type = 'button'; clr.id = 'clear'; clr.hidden = true;
+    clr.onclick = function () { state.f = {}; state.q = ''; $('q').value = ''; render(); }; chips.appendChild(clr);
+    $('q').oninput = function (e) { state.q = e.target.value; render(); };
+    $('v-list').onclick = function () { state.view = 'list'; render(); };
+    $('v-grid').onclick = function () { state.view = 'grid'; state.sel = null; render(); };
+    $('prev').onclick = function () { var m = state.month; state.month = m.m ? { y: m.y, m: m.m - 1 } : { y: m.y - 1, m: 11 }; state.sel = null; render(); };
+    $('next').onclick = function () { var m = state.month; state.month = m.m < 11 ? { y: m.y, m: m.m + 1 } : { y: m.y + 1, m: 0 }; state.sel = null; render(); };
+    if (/[?&]view=grid/.test(location.search)) state.view = 'grid';
+    render();
+  }
+
+  fetch('jams.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(init)
+    .catch(function () { var e = empty(); e.firstChild.textContent = 'Could not load the calendar'; $('list').appendChild(e); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Indie Go Punk//Game Jams//EN
+X-WR-CALNAME:Indie Go Punk game jams
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:epic-ai-megajam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261116
+SUMMARY:2026 Epic AI MegaJam
+URL:https://itch.io/jam/2026-epic-ai-megajam
+DESCRIPTION:Unreal Engine and UEFN jam with large cash prizes. Online\, plus a two-day in-person event in San Francisco. https://itch.io/jam/2026-epic-ai-megajam
+LOCATION:San Francisco\, USA
+END:VEVENT
+BEGIN:VEVENT
+UID:mini-jame-gam-61@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:Mini Jame Gam #61
+URL:https://itch.io/jam/mini-jame-gam-61
+DESCRIPTION:Short weekend jam with a theme revealed at the start. https://itch.io/jam/mini-jame-gam-61
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:godot-wild-jam-99@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261123
+SUMMARY:Godot Wild Jam #99
+URL:https://itch.io/jam/godot-wild-jam-99
+DESCRIPTION:Monthly nine-day jam for Godot games. Teams of up to 5. The community picks the theme. https://itch.io/jam/godot-wild-jam-99
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:haven-hong-kong-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261116
+SUMMARY:Haven Hong Kong
+URL:https://itch.io/jam/haven-hong-kong
+DESCRIPTION:Two-day in-person jam for middle and high school students. Prizes include an internship. https://itch.io/jam/haven-hong-kong
+LOCATION:Hong Kong
+END:VEVENT
+BEGIN:VEVENT
+UID:micro-jam-069@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261117
+SUMMARY:Micro Jam 069: Halloween
+URL:https://itch.io/jam/micro-jam-069
+DESCRIPTION:Weekend micro jam with a Halloween theme and small cash prizes. https://itch.io/jam/micro-jam-069
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:finish-your-game-jam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261202
+SUMMARY:Finish Your Game Jam 2026
+URL:https://itch.io/jam/finishyourgamejam2026
+DESCRIPTION:Non-competitive jam for finishing projects. Local Portland events and open remote entry. https://itch.io/jam/finishyourgamejam2026
+LOCATION:Portland\, USA
+END:VEVENT
+BEGIN:VEVENT
+UID:ggj-next-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20270316
+SUMMARY:GGJ Next 2027
+URL:https://itch.io/jam/ggj-next-2027
+DESCRIPTION:Youth jam for ages 10-18 that feeds the G4C Student Challenge. Jam sites can run any time in the window. https://itch.io/jam/ggj-next-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:metroidvania-month-34@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261116
+DTEND;VALUE=DATE:20261217
+SUMMARY:Metroidvania Month Finale
+URL:https://itch.io/jam/metroidvania-month-34
+DESCRIPTION:Monthlong unranked jam for Metroidvania games. No theme and no team size limit. https://itch.io/jam/metroidvania-month-34
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:game-writing-sig-arcjam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261124
+SUMMARY:Game Writing SIG Arcjam 2026
+URL:https://itch.io/jam/game-writing-sig-arcjam-2026
+DESCRIPTION:Weekend jam focused on narrative and game writing\, run by Arcweave. https://itch.io/jam/game-writing-sig-arcjam-2026
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:gmt-jam-1@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261201
+SUMMARY:GMT Jam #1
+URL:https://itch.io/jam/gmt-jam-1
+DESCRIPTION:First jam from an Indian non-profit gaming community. Teams up to 3\, $300 pool\, game and dev log tracks. https://itch.io/jam/gmt-jam-1
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:bezi-jam-15@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261201
+SUMMARY:Bezi Jam 15 (Unreal)
+URL:https://itch.io/jam/bezi-jam-15
+DESCRIPTION:Three-day Unreal Engine jam with a $400 prize pool. https://itch.io/jam/bezi-jam-15
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:micro-jam-070@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261201
+SUMMARY:Micro Jam 070: Circus
+URL:https://itch.io/jam/micro-jam-070
+DESCRIPTION:Weekend micro jam with a circus theme and small cash prizes. https://itch.io/jam/micro-jam-070
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:pixel-forge-mega-jam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261209
+SUMMARY:Pixel Forge Mega Jam
+URL:https://itch.io/jam/pixel-forge-mega-jam
+DESCRIPTION:Ten-day jam with cash and software prizes. Teams of up to 4. https://itch.io/jam/pixel-forge-mega-jam
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:uplifting-game-jam-dec-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261215
+SUMMARY:Uplifting Game Jam
+URL:https://itch.io/jam/uplifting-game-jam-cash-prizes-10
+DESCRIPTION:Two-week jam for uplifting games with cash prizes. https://itch.io/jam/uplifting-game-jam-cash-prizes-10
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:procjam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261214
+SUMMARY:PROCJAM 2026
+URL:https://itch.io/jam/procjam
+DESCRIPTION:Procedural generation jam with no winners. Games\, toys\, art and music all count. https://itch.io/jam/procjam
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:gamedevtv-holiday-jam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261215
+SUMMARY:GameDev.tv Holiday Jam 2026
+URL:https://itch.io/jam/gamedevtv-holiday-jam-2026
+DESCRIPTION:Ten-day jam\, teams up to 6. Entries are rated in seven categories. https://itch.io/jam/gamedevtv-holiday-jam-2026
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:mfg-gamblers-jam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261214
+SUMMARY:The MFG Gambler's Jam
+URL:https://itch.io/jam/the-mfg-gamblers-jam
+DESCRIPTION:Eight-day jam with a gambling-style bonus theme. Hack Club gives prizes to teen entrants. https://itch.io/jam/the-mfg-gamblers-jam
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:mini-jame-gam-62@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261214
+SUMMARY:Mini Jame Gam #62
+URL:https://itch.io/jam/mini-jame-gam-62
+DESCRIPTION:Next weekend edition of the Jame Gam mini series. https://itch.io/jam/mini-jame-gam-62
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:godot-wild-jam-100@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261221
+SUMMARY:Godot Wild Jam #100
+URL:https://itch.io/jam/godot-wild-jam-100
+DESCRIPTION:The 100th monthly Godot Wild Jam. Godot only\, nine days. https://itch.io/jam/godot-wild-jam-100
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:grassroots-game-jam-2026@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261222
+SUMMARY:Grassroots Game Jam 2026
+URL:https://itch.io/jam/grassroots-game-jam-2026
+DESCRIPTION:Ten-day community jam in December. https://itch.io/jam/grassroots-game-jam-2026
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:micro-jam-071@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261215
+SUMMARY:Micro Jam 071: Coffee
+URL:https://itch.io/jam/micro-jam-071
+DESCRIPTION:Weekend micro jam with a coffee theme and small cash prizes. https://itch.io/jam/micro-jam-071
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:dutch-game-jam-8@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20270104
+SUMMARY:Dutch Game Jam #8 Winter 2026-2027
+URL:https://itch.io/jam/dutch-game-jam-8-winter-2026-2027
+DESCRIPTION:Two-week jam run on Discord in Dutch. Teams of 4 to 5 suggested. https://itch.io/jam/dutch-game-jam-8-winter-2026-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:glam-jam-iii@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270201
+SUMMARY:Glam Jam III
+URL:https://itch.io/jam/glam-jam-iii
+DESCRIPTION:Monthlong jam about nostalgia for a genre. Winners due 10 Feb. https://itch.io/jam/glam-jam-iii
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:gdko-2027-round-1@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270116
+SUMMARY:GDKO 2027 Round 1
+URL:https://itch.io/jam/gdko-2027-round-1
+DESCRIPTION:Two-week first round of a knockout-style jam series. https://itch.io/jam/gdko-2027-round-1
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:opengameart-winter-game-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270201
+SUMMARY:OpenGameArt.org's Winter Game Jam 2027
+URL:https://itch.io/jam/opengameartorgs-winter-game-jam-2027
+DESCRIPTION:Monthlong winter jam tied to the OpenGameArt community. https://itch.io/jam/opengameartorgs-winter-game-jam-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:union-made-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270202
+SUMMARY:Union-Made Game Jam 2027
+URL:https://itch.io/jam/union-made-jam-2027
+DESCRIPTION:Monthlong jam run by the United Videogame Workers union. Theme revealed at the start. https://itch.io/jam/union-made-jam-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:comfy-jam-winter-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270109
+DTEND;VALUE=DATE:20270124
+SUMMARY:Comfy Jam: Winter
+URL:https://itch.io/jam/comfy-jam-winter-2027
+DESCRIPTION:Two-week jam for cozy games. https://itch.io/jam/comfy-jam-winter-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:fiea-collegiate-game-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270118
+SUMMARY:FIEA Collegiate Game Jam 2027
+URL:https://fiea.ucf.edu/gamejam2027/
+DESCRIPTION:In-person 48-hour jam in Orlando. Teams up to 4\, $60 team fee. First prize is a Switch 2 per member. https://fiea.ucf.edu/gamejam2027/
+LOCATION:Orlando\, USA
+END:VEVENT
+BEGIN:VEVENT
+UID:high-score-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270125
+SUMMARY:High Score Jam
+URL:https://itch.io/jam/high-score-jam
+DESCRIPTION:Nine-day arcade-style jam. https://itch.io/jam/high-score-jam
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:pirate-software-game-jam-20@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270117
+DTEND;VALUE=DATE:20270201
+SUMMARY:Pirate Software Game Jam 20
+URL:https://itch.io/jam/pirate
+DESCRIPTION:Two-week jam with a community-voted theme. Teams up to 5 or solo. https://itch.io/jam/pirate
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:1-bit-jam-17@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270118
+DTEND;VALUE=DATE:20270126
+SUMMARY:1-BIT JAM 17
+URL:https://itch.io/jam/1-bit-jam-17
+DESCRIPTION:One-week jam with a one-bit visual style. https://itch.io/jam/1-bit-jam-17
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:historically-accurate-game-jam-14@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270122
+DTEND;VALUE=DATE:20270201
+SUMMARY:Historically Accurate Game Jam 14
+URL:https://itch.io/jam/historically-accurate-game-jam-14
+DESCRIPTION:Nine-day jam about games grounded in real history. https://itch.io/jam/historically-accurate-game-jam-14
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:global-game-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270125
+DTEND;VALUE=DATE:20270201
+SUMMARY:Global Game Jam 2027
+URL:https://globalgamejam.org/
+DESCRIPTION:Worldwide jam at local sites plus online. Official week is 25-31 Jan. Many sites run the 48 hours from 23 Jan. https://globalgamejam.org/
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:games-for-blind-gamers-6@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270205
+DTEND;VALUE=DATE:20270309
+SUMMARY:Games for Blind Gamers 6
+URL:https://itch.io/jam/games-for-blind-gamers-6
+DESCRIPTION:Monthlong jam for making games that blind players can enjoy. https://itch.io/jam/games-for-blind-gamers-6
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:brackeys-game-jam-2027-1@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270214
+DTEND;VALUE=DATE:20270222
+SUMMARY:Brackeys Game Jam 2027.1
+URL:https://itch.io/jam/brackeys-17
+DESCRIPTION:One-week jam with a voted theme\, teams encouraged. Prize details come about a month before. https://itch.io/jam/brackeys-17
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:kiro-game-jam-fr@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270220
+DTEND;VALUE=DATE:20270228
+SUMMARY:KIRO Game Jam FR
+URL:https://itch.io/jam/kiro-game-jam-fr
+DESCRIPTION:One-week French-language jam run by Gamethan. https://itch.io/jam/kiro-game-jam-fr
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:1-bit-jam-18@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270308
+DTEND;VALUE=DATE:20270316
+SUMMARY:1-BIT JAM 18
+URL:https://itch.io/jam/1-bit-jam-18
+DESCRIPTION:One-week jam with a one-bit visual style. https://itch.io/jam/1-bit-jam-18
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:plug-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270406
+DTEND;VALUE=DATE:20270417
+SUMMARY:Plug Jam 2027
+URL:https://itch.io/jam/plug-jam-2027
+DESCRIPTION:Ten-day spring jam. https://itch.io/jam/plug-jam-2027
+LOCATION:Online
+END:VEVENT
+BEGIN:VEVENT
+UID:gamedevjs-jam-2027@indiegopunk.com
+DTSTAMP:20261111T071443Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270427
+SUMMARY:Gamedev.js Jam 2027
+URL:https://itch.io/jam/gamedevjs-2027
+DESCRIPTION:Two-week jam for JavaScript and web games. Challenge prizes are still to be announced. https://itch.io/jam/gamedevjs-2027
+LOCATION:Online
+END:VEVENT
+END:VCALENDAR
