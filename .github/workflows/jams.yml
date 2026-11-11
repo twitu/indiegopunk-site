@@ -14,9 +14,9 @@ jobs:
       - name: Stale entries
         run: python3 bin/jams.py stale 30 | tee /dev/stderr | sed 's/^/::warning::/'
       - name: Rebuild feed
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         run: |
           python3 bin/jams.py build
           git config user.name "jams-bot"; git config user.email "jams-bot@users.noreply.github.com"
-          git add calendars/jams.json calendars/jams.ics
-          git diff --cached --quiet || (git commit -m "calendars: rebuild jams.ics" && git push)
+          git add calendars/jams.json calendars/jams.ics calendars/index.html sitemap.xml
+          git diff --cached --quiet || (git commit -m "calendars: rebuild feed and structured data" && git push)

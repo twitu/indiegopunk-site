@@ -76,10 +76,57 @@ def feed(jams):
     return "\r\n".join(out) + "\r\n"
 
 
+def ld_and_noscript(jams):
+    """Static structured data and a no-JS list, so crawlers and link scanners see the jams."""
+    today = dt.date.today().isoformat()
+    up = [j for j in jams if j["end"] >= today]
+    events = []
+    for j in up:
+        online = j["format"] in ("online", "hybrid")
+        loc = []
+        if online:
+            loc.append({"@type": "VirtualLocation", "url": j["url"]})
+        if j["format"] in ("in-person", "hybrid"):
+            loc.append({"@type": "Place", "name": j.get("location") or "TBA", "address": j.get("location") or "TBA"})
+        mode = {"online": "OnlineEventAttendanceMode", "in-person": "OfflineEventAttendanceMode", "hybrid": "MixedEventAttendanceMode"}[j["format"]]
+        ev = {"@type": "Event", "name": j["name"], "url": j["url"], "startDate": j["start"], "endDate": j["end"],
+              "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/" + mode,
+              "location": loc[0] if len(loc) == 1 else loc, "organizer": {"@type": "Organization", "name": j["host"]},
+              "isAccessibleForFree": True, "description": j.get("note") or j["name"],
+              "image": "https://indiegopunk.com/og-calendar.jpg"}
+        events.append(ev)
+    graph = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": "Game Jam Calendar", "url": "https://indiegopunk.com/calendars/",
+         "description": "Upcoming game jams for indie developers.", "isPartOf": {"@type": "WebSite", "url": "https://indiegopunk.com/", "name": "Indie Go Punk"}},
+        *events]}
+    ld = '<script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+    import html
+    items = "".join(f'<li><a href="{html.escape(j["url"])}">{html.escape(j["name"])}</a>, {j["start"]} to {j["end"]}, '
+                    f'{html.escape(j["host"])}</li>' for j in up)
+    return ld, f"<noscript><ul>{items}</ul></noscript>"
+
+
+def inject(tag, body):
+    page = ROOT / "index.html"
+    s = page.read_text()
+    new = re.sub(rf"<!--{tag}-->.*?<!--/{tag}-->", lambda m: f"<!--{tag}-->{body}<!--/{tag}-->", s, flags=re.S)
+    if new != s:
+        page.write_text(new)
+
+
+def sitemap():
+    today = dt.date.today().isoformat()
+    urls = [("https://indiegopunk.com/", "weekly", "1.0"), ("https://indiegopunk.com/calendars/", "daily", "0.9")]
+    body = "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>" for u, c, p in urls)
+    (ROOT.parent / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + body + "</urlset>\n")
+
+
 def write(doc):
     doc["jams"].sort(key=lambda j: (j["start"], j["end"], j["id"]))
     DATA.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
     FEED.write_text(feed(doc["jams"]))
+    ld, ns = ld_and_noscript(doc["jams"])
+    inject("jams-ld", ld); inject("jams-ns", ns); sitemap()
 
 
 def main():
