@@ -92,7 +92,7 @@ def ld_and_noscript(jams):
         ev = {"@type": "Event", "name": j["name"], "url": j["url"], "startDate": j["start"], "endDate": j["end"],
               "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/" + mode,
               "location": loc[0] if len(loc) == 1 else loc, "organizer": {"@type": "Organization", "name": j["host"]},
-              "isAccessibleForFree": True, "description": j.get("note") or j["name"],
+              "description": j.get("note") or j["name"],
               "image": "https://indiegopunk.com/og-calendar.jpg"}
         events.append(ev)
     graph = {"@context": "https://schema.org", "@graph": [
