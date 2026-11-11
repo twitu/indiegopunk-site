@@ -14,7 +14,7 @@ DATA, FEED = ROOT / "jams.json", ROOT / "jams.ics"
 FORMATS = {"online", "in-person", "hybrid"}
 TEAMS = {"solo", "team", "both"}
 REQUIRED = ["id", "name", "url", "start", "end", "host", "format", "team", "verified"]
-KEYS = REQUIRED + ["platform", "location", "theme", "duration_hours", "prize", "note", "featured"]
+KEYS = REQUIRED + ["platform", "location", "theme", "duration_hours", "prize", "note", "featured", "source"]
 
 
 def load():
