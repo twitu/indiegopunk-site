@@ -117,6 +117,11 @@ def inject(tag, body):
 def sitemap():
     today = dt.date.today().isoformat()
     urls = [("https://indiegopunk.com/", "weekly", "1.0"), ("https://indiegopunk.com/calendars/", "daily", "0.9")]
+    # Blog pages are built by bin/blog.py; list whatever it generated so either build keeps them.
+    blog = ROOT.parent / "blog"
+    if (blog / "index.html").exists():
+        urls.append(("https://indiegopunk.com/blog/", "weekly", "0.8"))
+        urls += [(f"https://indiegopunk.com/blog/{p.parent.name}/", "monthly", "0.7") for p in sorted(blog.glob("*/index.html"))]
     body = "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>" for u, c, p in urls)
     (ROOT.parent / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + body + "</urlset>\n")
 

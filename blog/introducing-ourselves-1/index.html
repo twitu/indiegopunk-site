@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing Ourselves #1 | Indie Go Punk</title>
+<meta name="description" content="Introducing Diwakar the co-host of the Indie Go Punk Podcast.">
+<link rel="canonical" href="https://indiegopunk.com/blog/introducing-ourselves-1/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Indie Go Punk">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Introducing Ourselves #1 | Indie Go Punk">
+<meta property="og:description" content="Introducing Diwakar the co-host of the Indie Go Punk Podcast.">
+<meta property="og:url" content="https://indiegopunk.com/blog/introducing-ourselves-1/">
+<meta property="og:image" content="https://indiegopunk.com/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Introducing Ourselves #1 | Indie Go Punk">
+<meta name="twitter:description" content="Introducing Diwakar the co-host of the Indie Go Punk Podcast.">
+<meta name="twitter:image" content="https://indiegopunk.com/og-home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Introducing Ourselves #1", "description": "Introducing Diwakar the co-host of the Indie Go Punk Podcast.", "datePublished": "2026-11-12", "author": {"@type": "Person", "name": "Diwakar"}, "url": "https://indiegopunk.com/blog/introducing-ourselves-1/", "image": "https://indiegopunk.com/og-home.jpg", "publisher": {"@type": "Organization", "name": "Indie Go Punk"}}</script>
+<meta name="theme-color" content="#0d0a12">
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="alternate" type="application/rss+xml" title="Indie Go Punk Blog (RSS)" href="/blog/rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Indie Go Punk Blog (Atom)" href="/blog/atom.xml">
+<style>
+@font-face { font-family: "Archivo Black"; src: url("/fonts/ArchivoBlack-Regular.ttf"); font-display: swap; }
+@font-face { font-family: "Space Mono"; font-weight: 700; src: url("/fonts/SpaceMono-Bold.ttf"); font-display: swap; }
+/* Same tokens as the home and calendar pages. */
+:root {
+  --ink: #0d0a12; --panel: #1b1426; --bone: #f2ece0; --pink: #ff2e88; --yellow: #f4ff3a; --violet: #7a2cff;
+  --muted: #cfc6d8; --dim: #8a8099;
+  --display: "Archivo Black", Impact, "Arial Black", sans-serif;
+  --mono: "Space Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); }
+body {
+  margin: 0; min-height: 100svh; display: grid; grid-template-rows: 1fr auto;
+  color: var(--bone); font-family: var(--mono); font-weight: 700; line-height: 1.6;
+  padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .1; background: url("/texture.png") 0 0 / 300px 300px; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+main { width: 100%; max-width: 760px; margin: 0 auto; padding: 28px 0 48px; display: grid; gap: 28px; align-content: start; }
+.home { justify-self: start; display: inline-flex; gap: 4px; text-decoration: none; }
+.home .t { display: grid; place-items: center; width: 28px; aspect-ratio: 24 / 30; background: var(--bone); color: var(--ink); font: 400 18px / 1 var(--display); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--pink); transform: rotate(var(--r, 0deg)); }
+.home .t.v { background: var(--violet); color: var(--yellow); }
+.home .t.p { background: var(--pink); box-shadow: 3px 3px 0 var(--violet); }
+.home .t.y { background: var(--yellow); }
+h1 { margin: 0; font: 400 clamp(30px, 7vw, 52px) / 1.05 var(--display); text-transform: uppercase; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yellow); }
+.lede { margin: 0; max-width: 56ch; color: var(--muted); }
+.by { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+.by b { color: var(--pink); font-weight: 700; }
+.posts { display: grid; gap: 20px; }
+.post { background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); padding: 18px 20px; display: grid; gap: 6px; }
+.post h2 { margin: 0; font: 400 22px / 1.15 var(--display); text-transform: uppercase; }
+.post h2 a { text-decoration: none; }
+.post h2 a:hover { color: var(--yellow); }
+.post p { margin: 0; color: var(--muted); font-size: 14px; }
+.subs { margin: 0; font-size: 13px; color: var(--dim); }
+.subs a { color: var(--yellow); }
+.empty { background: var(--panel); border: 3px dashed var(--violet); padding: 18px 20px; color: var(--muted); }
+article.prose { display: grid; gap: 14px; }
+.prose h1 { margin-bottom: 4px; }
+.prose h2, .prose h3 { margin: 18px 0 0; font: 400 22px / 1.2 var(--display); text-transform: uppercase; color: var(--yellow); }
+.prose h3 { font-size: 18px; color: var(--bone); }
+.prose p, .prose ul, .prose ol { margin: 0; color: var(--muted); }
+.prose a { color: var(--pink); }
+.prose img { max-width: 100%; height: auto; display: block; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); }
+.prose blockquote { margin: 0; padding: 4px 16px; border-left: 4px solid var(--pink); }
+.prose pre { overflow-x: auto; background: var(--panel); padding: 12px 14px; border: 2px solid var(--violet); }
+.prose code { font-family: var(--mono); }
+.prose table { border-collapse: collapse; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 2px solid var(--violet); padding: 6px 10px; text-align: left; }
+.video { aspect-ratio: 16 / 9; background: #120d1a; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet); }
+.video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.back { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--yellow); }
+footer { max-width: 760px; width: 100%; margin: 0 auto; text-align: center; padding: 20px 0 28px; font-size: 12px; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
+footer a { margin: 0 8px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="home" href="/" aria-label="Indie Go Punk home">
+    <span class="t" style="--r:-4deg">I</span><span class="t v" style="--r:3deg">G</span><span class="t p" style="--r:-2deg">P</span><span class="t y" style="--r:4deg">!</span>
+  </a>
+  <article class="prose">
+    <h1>Introducing Ourselves #1</h1>
+    <span class="by">12 November 2026 &middot; <b>Diwakar</b></span>
+<h2>Intro</h2>
+<p>Hello my name is Diwakar and I am the co-host for the Indie Go Punk Podcast. I thought I would sit down and write a post introducing myself.</p>
+<p>My day job is that of a software dev, but I have been passionate about games since I was a child. My first two encounters with games were:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/The_House_of_the_Dead_(video_game)">House of the Dead</a></li>
+<li><a href="https://en.wikipedia.org/wiki/IGI-2:_Covert_Strike">Project IGI 2</a></li>
+</ul>
+<p>I have dabbled in gamedev but not to any professional capacity. That being said I am very much looking forward to talking with people who have made this their career. I am hoping to get that spark of inspiration I need to make something people want to play. I hope that the people following us are also inspired to make something cool.</p>
+<p>Some of my most favorite games are:</p>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon_(video_game_series)">Pokemon</a> (GBC to 3DS) -  I think the original 2D pokemon has a magic which Gamefreak has not been able to capture, and there are fans eagerly awaiting something close to their dream Pokemon experience, and I hope they get it. I think it is unlikely for it to happen, but let's see how the core pokemon audience feels about Winds and Waves.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Story_of_Seasons">Harvest Moon</a> and <a href="https://store.steampowered.com/app/413150/">Stardew Valley</a> - I love the farming sims genre. I used to play Harvest Moon on the GBA, and N64 emulators and had been craving something like it until Stardew Valley came along. I think Stardew Valley is amazing and I hope to make something with even 10% of Eric Barone's passion. </p>
+</li>
+<li>
+<p><a href="https://store.steampowered.com/app/294100/">Rimworld</a> and <a href="https://store.steampowered.com/app/975370/">Dwarf Fortress</a> - I have spent too much time on Rimworld, and got into Dwarf Fortress through reading <a href="https://youtu.be/nI1UmlfP1Cg">boatmurdered</a>. It is a perfect game. I love story generators like Rimworld and Dwarf Fortress, because there are limitless possibilities of interesting stuff happening in them. It also is proof that you don't need high end graphics to have deep gameplay.</p>
+</li>
+<li>
+<p><a href="https://store.steampowered.com/app/219150/">Hotline Miami 1</a> and <a href="https://store.steampowered.com/app/274170/">2</a> - I love these games to death, I think there have been too many games trying to do what Hotline Miami did, but most of them have at best been admirable attempts, but personally nothing comes close to these two games. I love them flaws and all.</p>
+</li>
+<li>
+<p><a href="https://store.steampowered.com/app/205100/">Dishonored 1</a> - I love the Immersive Sim genre because of this title. I love the stealth mechanics in this game and just the number of ways you can solve a problem. I think someone needs to take inspiration from Dishonored's movement and abilities and strip it away from the binary morality system that it is tied to. I think a skilled writer could make it work but I would love to just move around Dunwall like a shadow in the night.</p>
+</li>
+<li>
+<p><a href="https://store.steampowered.com/app/239350/">Spelunky</a> -  This was the first roguelite I played and to this day I still feel like it is magical. I think the artstyle is timeless and the amount of gameplay you are able to extract out of such simple mechanics, enemy and trap placement is amazing. It is a masterclass in game feel and game design.</p>
+</li>
+</ul>
+<p>I know that the above titles are mostly older titles and 2D games, that is because I am a budget gamer and I love having the bang for my buck. That doesn't necessarily mean that I don't play new games. I played and loved <a href="https://store.steampowered.com/app/3768760/">007 First Light</a> and I currently have <a href="https://www.playstation.com/en-in/games/grand-theft-auto-vi/">GTA 6</a> preloaded on my PS5, it is just that 2D handheld games are so much easier to play on a commute or busy day.</p>
+  </article>
+  <a class="back" href="/blog/">&larr; All posts</a>
+</main>
+<footer><a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/calendars/">Game Jams</a> &middot; &copy; Indie Go Punk</footer>
+</body>
+</html>
