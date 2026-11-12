@@ -51,36 +51,22 @@ sitemap.xml, robots.txt    SEO; sitemap.xml is generated
 
 ### Write a post
 
-1. Start the post:
+1. **Create the post with `bin/new-post`.** Always start here; it writes the front matter for you. Run it from the repository root, on a branch (see [Contributing](#contributing)):
 
    ```bash
-   bin/new-post "Shipping Third Law"                 # author defaults to your git user.name
-   bin/new-post "Shipping Third Law" "Your Name"
+   bin/new-post "Shipping Third Law"                  # author is your git user.name
+   bin/new-post "Shipping Third Law" "Author Name"    # or set the author yourself
    ```
 
-   This writes `blog/posts/<slug>.md` with today's date and an example body. The YouTube and image examples sit inside an `<!-- ... -->` comment; copy what you need out of it. HTML comments are never published. The finished file looks like this:
+   It creates `blog/posts/shipping-third-law.md` with the title, slug, today's date, the author, a placeholder description and an example body, then prints the file's path.
 
-   ```markdown
-   ---
-   title: Shipping Third Law
-   description: One or two sentences, shown in the post list and in link previews.
-   slug: shipping-third-law
-   date: 2026-11-20
-   author: Your Name
-   ---
-   The post body, in Markdown.
+   - The slug comes from the title: lowercase, anything that is not a letter or digit becomes a hyphen. `"Why We Love Game Jams!"` becomes `why-we-love-game-jams`.
+   - It never overwrites a post. It stops without changing anything if the slug already exists, if no title is given, or if the title has no letters or digits.
+   - `Permission denied`? Run `bash bin/new-post "..."` or `chmod +x bin/new-post` once. On Windows, use Git Bash or WSL.
 
-   https://www.youtube.com/watch?v=SNbzYsUCjBk
+2. **Write it.** Open the new file, replace the placeholder description, and replace the example body with your post. The YouTube and image examples sit inside an `<!-- ... -->` comment: copy out what you need. Comments are never published. See [Post format](#post-format) for the rules.
 
-   ![A screenshot of the game](images/third-law.png)
-   ```
-
-   - All five fields are required. `slug` must be lowercase-with-hyphens and match the file name. `date` is `YYYY-MM-DD`.
-   - A YouTube link **on a line of its own** becomes an embedded player. A YouTube link inside a sentence stays a normal link.
-   - Put images in `blog/posts/images/` and refer to them as `images/<name>`. Compress them first; they live in the repo.
-   - Tables and fenced code blocks work. Raw HTML is passed through.
-
-2. Build and preview:
+3. **Build and preview:**
 
    ```bash
    python3 bin/blog.py build      # or: python3 bin/blog.py check  (validate only)
@@ -89,41 +75,38 @@ sitemap.xml, robots.txt    SEO; sitemap.xml is generated
 
    The build rewrites `blog/index.html` (newest first), every `blog/<slug>/index.html`, and `sitemap.xml`. You never edit the post list by hand. A deleted or renamed post's old page is removed.
 
-3. Commit the `.md`, its images and the generated files together:
+4. **Commit** the `.md`, its images and the generated files together:
 
    ```bash
    git add blog sitemap.xml
+   git commit -m "blog: post on shipping Third Law"
    ```
 
-4. Open a pull request (see [Contributing](#contributing)). The post goes live when the PR is merged into `main`.
+5. **Push the branch and open a pull request** into `main`. The post goes live when the PR is merged.
 
-### The `bin/new-post` script
+### Post format
 
-Creates a new post file from a template so you do not have to type the front matter by hand.
+A finished post looks like this:
 
-Run it from the repository root:
+```markdown
+---
+title: Shipping Third Law
+description: One or two sentences, shown in the post list and in link previews.
+slug: shipping-third-law
+date: 2026-11-20
+author: Author Name
+---
+The post body, in Markdown.
 
-```bash
-bin/new-post "Post title"                  # author is taken from: git config user.name
-bin/new-post "Post title" "Author Name"    # set the author yourself
+https://www.youtube.com/watch?v=SNbzYsUCjBk
+
+![A screenshot of the game](images/third-law.png)
 ```
 
-If you get `Permission denied`, either run it through bash (`bash bin/new-post "Post title"`) or make it executable once with `chmod +x bin/new-post`. On Windows, run it from Git Bash or WSL.
-
-What it does:
-
-- Makes the slug from the title: lowercase, anything that is not a letter or digit becomes a hyphen. `"Why We Love Game Jams!"` becomes `why-we-love-game-jams`.
-- Writes `blog/posts/<slug>.md` with the title, slug, today's date, the author, and a placeholder description to replace.
-- Fills the body with an example paragraph, heading, list and quote, plus a comment holding YouTube and image examples to copy from.
-- Prints the path of the new file and the next command to run.
-
-It stops with an error, and changes nothing, when:
-
-- no title is given (prints the usage line),
-- the title has no letters or digits, so no slug can be made,
-- a post with that slug already exists. It never overwrites a post.
-
-After it runs: edit the file, replace the placeholder description, then `python3 bin/blog.py build` and preview.
+- All five fields are required. `slug` must be lowercase-with-hyphens and match the file name. `date` is `YYYY-MM-DD`. `bin/new-post` gets all of this right for you.
+- A YouTube link **on a line of its own** becomes an embedded player. A YouTube link inside a sentence stays a normal link.
+- Put images in `blog/posts/images/` and refer to them as `images/<name>`. Compress them first; they live in the repo.
+- Tables and fenced code blocks work. Raw HTML is passed through. HTML comments are removed.
 
 ### What CI does
 
