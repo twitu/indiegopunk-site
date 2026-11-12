@@ -57,10 +57,11 @@ def read(path):
         dt.date.fromisoformat(meta.get("date", ""))
     except ValueError:
         errs.append(f"{path.name}: bad date (use YYYY-MM-DD)")
-    for src in re.findall(r"!\[[^\]]*\]\(\s*<?([^)\s>]+)", m.group(2)):
+    body = re.sub(r"<!--.*?-->", "", m.group(2), flags=re.S)  # comments are notes for the writer, never published
+    for src in re.findall(r"!\[[^\]]*\]\(\s*<?([^)\s>]+)", body):
         if not re.match(r"https?://|/", src) and not (POSTS / src).is_file():
             errs.append(f"{path.name}: image not found: {src}")
-    return meta, m.group(2), errs
+    return meta, body, errs
 
 
 def load():

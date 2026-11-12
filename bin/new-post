@@ -1,0 +1,46 @@
+#!/bin/bash
+# Start a new blog post from a template.
+#   bin/new-post "Post title" ["Author Name"]
+# Writes blog/posts/<slug>.md with today's date. Author defaults to your git user.name.
+set -euo pipefail
+[ $# -ge 1 ] && [ -n "$1" ] || { echo 'usage: bin/new-post "Post title" ["Author Name"]' >&2; exit 1; }
+TITLE=$1
+AUTHOR=${2:-$(git config user.name || true)}
+SLUG=$(printf '%s' "$TITLE" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
+[ -n "$SLUG" ] || { echo "could not make a slug from: $TITLE" >&2; exit 1; }
+FILE="$(cd "$(dirname "$0")/.." && pwd)/blog/posts/$SLUG.md"
+[ ! -e "$FILE" ] || { echo "already exists: $FILE" >&2; exit 1; }
+
+cat > "$FILE" <<MD
+---
+title: $TITLE
+description: One or two sentences about the post. Shown in the post list and in link previews.
+slug: $SLUG
+date: $(date +%F)
+author: ${AUTHOR:-Your Name}
+---
+Start with a short paragraph that says what this post is about. **Bold**, *italic* and [links](https://indiegopunk.com/calendars/) work as usual.
+
+## A section heading
+
+- A list item
+- Another list item
+
+> A quote from the episode.
+
+<!--
+Examples. Copy a line out of this comment to use it.
+
+A YouTube link on a line of its own becomes an embedded player:
+
+https://www.youtube.com/watch?v=SNbzYsUCjBk
+
+An image: put the file in blog/posts/images/ and write:
+
+![What the image shows](images/your-image.png)
+
+Then run: python3 bin/blog.py build
+-->
+MD
+echo "created $FILE"
+echo "edit it, then run: python3 bin/blog.py build"

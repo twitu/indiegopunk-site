@@ -15,7 +15,9 @@ with tempfile.TemporaryDirectory() as d:
     blog.POSTS = Path(d)
     (Path(d) / "good-post.md").write_text("---\ntitle: T\ndescription: D\nslug: good-post\ndate: 2026-11-20\nauthor: A\n---\nBody\n")
     (Path(d) / "bad.md").write_text("---\ntitle: T\nslug: other\ndate: 20-11-2026\nauthor: A\ncolour: red\n---\n![x](images/missing.png)\n")
+    (Path(d) / "commented.md").write_text("---\ntitle: T\ndescription: D\nslug: commented\ndate: 2026-11-20\nauthor: A\n---\nHi\n<!--\n![x](images/nope.png)\n-->\n")
     posts, errs = blog.load()
+    assert "nope.png" not in str(errs) and "<!--" not in [b for m, b in posts if m["slug"] == "commented"][0]
     assert all(e.startswith("bad.md") for e in errs), errs
     for want in ["missing description", "must match the file name", "bad date", "unknown field colour", "image not found"]:
         assert any(want in e for e in errs), (want, errs)

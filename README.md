@@ -40,6 +40,7 @@ bin/
   jams_sync.py             pull upcoming jams from itch.io
   jams-refresh.sh          fortnightly sync run on the owner's Mac
   blog.py                  validate and build the blog
+  new-post                 start a new blog post from a template
   test_blog.py             self-check for blog.py
 infra/                     AWS CDK: interest form backend and public asset bucket
 .github/workflows/         CI for jams and blog
@@ -50,7 +51,14 @@ sitemap.xml, robots.txt    SEO; sitemap.xml is generated
 
 ### Write a post
 
-1. Create `blog/posts/<slug>.md`:
+1. Start the post:
+
+   ```bash
+   bin/new-post "Shipping Third Law"                 # author defaults to your git user.name
+   bin/new-post "Shipping Third Law" "Your Name"
+   ```
+
+   This writes `blog/posts/<slug>.md` with today's date and an example body. The YouTube and image examples sit inside an `<!-- ... -->` comment; copy what you need out of it. HTML comments are never published. The finished file looks like this:
 
    ```markdown
    ---
