@@ -35,6 +35,7 @@ blog/
   posts/*.md               blog posts (you write these)
   posts/images/            images used by posts
   index.html, <slug>/      generated pages, do not edit by hand
+  rss.xml, atom.xml        generated feeds
 bin/
   jams.py                  validate and build the jam calendar
   jams_sync.py             pull upcoming jams from itch.io
@@ -73,7 +74,7 @@ sitemap.xml, robots.txt    SEO; sitemap.xml is generated
    python3 -m http.server 8765    # http://127.0.0.1:8765/blog/
    ```
 
-   The build rewrites `blog/index.html` (newest first), every `blog/<slug>/index.html`, and `sitemap.xml`. You never edit the post list by hand. A deleted or renamed post's old page is removed.
+   The build rewrites `blog/index.html` (newest first), every `blog/<slug>/index.html`, the feeds `blog/rss.xml` and `blog/atom.xml`, and `sitemap.xml`. You never edit the post list by hand. A deleted or renamed post's old page is removed.
 
 4. **Commit** the `.md`, its images and the generated files together:
 
@@ -107,6 +108,15 @@ https://www.youtube.com/watch?v=SNbzYsUCjBk
 - A YouTube link **on a line of its own** becomes an embedded player. A YouTube link inside a sentence stays a normal link.
 - Put images in `blog/posts/images/` and refer to them as `images/<name>`. Compress them first; they live in the repo.
 - Tables and fenced code blocks work. Raw HTML is passed through. HTML comments are removed.
+
+### Feeds and subscribing
+
+The build also writes two feeds with the full text of every post:
+
+- RSS: `https://indiegopunk.com/blog/rss.xml`
+- Atom: `https://indiegopunk.com/blog/atom.xml`
+
+Readers subscribe by pasting either link, or just `indiegopunk.com/blog/`, into a feed reader (Feedly, Inoreader, NetNewsWire and so on). Pages carry `<link rel="alternate">` tags so readers find the feeds on their own, and the blog index links to both. Feed dates come from the post dates, not the build time, so rebuilding without changes changes nothing.
 
 ### What CI does
 

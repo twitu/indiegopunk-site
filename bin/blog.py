@@ -2,7 +2,7 @@
 """Build the blog from blog/posts/*.md into static pages.
 
   bin/blog.py check    Validate every post. Exit 1 on any error.
-  bin/blog.py build    Validate, then write blog/index.html and blog/<slug>/index.html.
+  bin/blog.py build    Validate, then write blog/index.html, blog/<slug>/index.html, blog/rss.xml, blog/atom.xml.
 
 A post starts with front matter between --- lines:
 
@@ -128,6 +128,8 @@ h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yel
 .post h2 a { text-decoration: none; }
 .post h2 a:hover { color: var(--yellow); }
 .post p { margin: 0; color: var(--muted); font-size: 14px; }
+.subs { margin: 0; font-size: 13px; color: var(--dim); }
+.subs a { color: var(--yellow); }
 .empty { background: var(--panel); border: 3px dashed var(--violet); padding: 18px 20px; color: var(--muted); }
 article.prose { display: grid; gap: 14px; }
 .prose h1 { margin-bottom: 4px; }
@@ -178,6 +180,8 @@ def page(title, desc, url, og_type, ld, content):
 <meta name="theme-color" content="#0d0a12">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
+<link rel="alternate" type="application/rss+xml" title="Indie Go Punk Blog (RSS)" href="/blog/rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Indie Go Punk Blog (Atom)" href="/blog/atom.xml">
 <style>{CSS}</style>
 </head>
 <body>
@@ -207,7 +211,8 @@ def index_html(posts):
     <p class="lede">Notes from Indie Go Punk on making indie games, finding players and shipping.</p>
   </header>
   <section class="posts" aria-label="Posts">{items}
-  </section>"""
+  </section>
+  <p class="subs">Follow along in any feed reader: <a href="/blog/rss.xml">RSS</a> &middot; <a href="/blog/atom.xml">Atom</a></p>"""
     return page("Blog | Indie Go Punk", "Notes from Indie Go Punk on making indie games, finding players and shipping.",
                 f"{SITE}/blog/", "website", ld, content)
 
@@ -226,12 +231,46 @@ def post_html(m, body):
     return page(f'{m["title"]} | Indie Go Punk', m["description"], url, "article", ld, content)
 
 
+def feeds(posts):
+    """RSS 2.0 and Atom with full post content. Dated from the newest post, so a rebuild without changes changes nothing."""
+    from email.utils import format_datetime
+    e = lambda t: html.escape(t, quote=False)
+    when = lambda d: dt.datetime.fromisoformat(d).replace(tzinfo=dt.timezone.utc)
+    full = lambda body: re.sub(r'((?:src|href)=")/', rf"\1{SITE}/", body_html(body))  # readers need absolute links
+    newest = posts[0][0]["date"] if posts else "2026-11-12"
+    title, desc = "Indie Go Punk Blog", "Notes from Indie Go Punk on making indie games, finding players and shipping."
+    rss = "".join(f"""
+<item><title>{e(m["title"])}</title><link>{SITE}/blog/{m["slug"]}/</link><guid>{SITE}/blog/{m["slug"]}/</guid>
+<pubDate>{format_datetime(when(m["date"]))}</pubDate><dc:creator>{e(m["author"])}</dc:creator>
+<description>{e(full(b))}</description></item>""" for m, b in posts)
+    atom = "".join(f"""
+<entry><title>{e(m["title"])}</title><link href="{SITE}/blog/{m["slug"]}/"/><id>{SITE}/blog/{m["slug"]}/</id>
+<published>{when(m["date"]).isoformat()}</published><updated>{when(m["date"]).isoformat()}</updated>
+<author><name>{e(m["author"])}</name></author><summary>{e(m["description"])}</summary>
+<content type="html">{e(full(b))}</content></entry>""" for m, b in posts)
+    (BLOG / "rss.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel>
+<title>{title}</title><link>{SITE}/blog/</link><description>{desc}</description><language>en</language>
+<atom:link href="{SITE}/blog/rss.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>{format_datetime(when(newest))}</lastBuildDate>{rss}
+</channel></rss>
+""")
+    (BLOG / "atom.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>{title}</title><subtitle>{desc}</subtitle><id>{SITE}/blog/</id>
+<link href="{SITE}/blog/"/><link rel="self" href="{SITE}/blog/atom.xml"/>
+<updated>{when(newest).isoformat()}</updated><author><name>Indie Go Punk</name></author>{atom}
+</feed>
+""")
+
+
 def build(posts):
     # Every folder in blog/ except posts/ is generated: clear them so a renamed or deleted post leaves nothing behind.
     for d in BLOG.iterdir():
         if d.is_dir() and d.name != "posts":
             shutil.rmtree(d)
     (BLOG / "index.html").write_text(index_html(posts))
+    feeds(posts)
     for m, body in posts:
         (BLOG / m["slug"]).mkdir()
         (BLOG / m["slug"] / "index.html").write_text(post_html(m, body))

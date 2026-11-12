@@ -21,4 +21,16 @@ with tempfile.TemporaryDirectory() as d:
     assert all(e.startswith("bad.md") for e in errs), errs
     for want in ["missing description", "must match the file name", "bad date", "unknown field colour", "image not found"]:
         assert any(want in e for e in errs), (want, errs)
+
+# Feeds are well-formed XML with absolute links, built from the same posts.
+import xml.etree.ElementTree as ET
+with tempfile.TemporaryDirectory() as d:
+    blog.BLOG, blog.POSTS = Path(d), Path(d) / "posts"
+    blog.POSTS.mkdir()
+    (blog.POSTS / "a-b.md").write_text("---\ntitle: Tom & Jerry <3\ndescription: D\nslug: a-b\ndate: 2026-11-20\nauthor: A\n---\nSee [jams](/calendars/).\n")
+    blog.feeds(blog.load()[0])
+    rss, atom = ET.parse(Path(d) / "rss.xml").getroot(), ET.parse(Path(d) / "atom.xml").getroot()
+    assert rss.find("channel/item/title").text == "Tom & Jerry <3"
+    assert 'href="https://indiegopunk.com/calendars/"' in rss.find("channel/item/description").text
+    assert atom.find("{http://www.w3.org/2005/Atom}entry/{http://www.w3.org/2005/Atom}id").text == "https://indiegopunk.com/blog/a-b/"
 print("ok")

@@ -24,6 +24,8 @@
 <meta name="theme-color" content="#0d0a12">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
+<link rel="alternate" type="application/rss+xml" title="Indie Go Punk Blog (RSS)" href="/blog/rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Indie Go Punk Blog (Atom)" href="/blog/atom.xml">
 <style>
 @font-face { font-family: "Archivo Black"; src: url("/fonts/ArchivoBlack-Regular.ttf"); font-display: swap; }
 @font-face { font-family: "Space Mono"; font-weight: 700; src: url("/fonts/SpaceMono-Bold.ttf"); font-display: swap; }
@@ -61,6 +63,8 @@ h1 em { font-style: normal; color: var(--pink); text-shadow: 3px 3px 0 var(--yel
 .post h2 a { text-decoration: none; }
 .post h2 a:hover { color: var(--yellow); }
 .post p { margin: 0; color: var(--muted); font-size: 14px; }
+.subs { margin: 0; font-size: 13px; color: var(--dim); }
+.subs a { color: var(--yellow); }
 .empty { background: var(--panel); border: 3px dashed var(--violet); padding: 18px 20px; color: var(--muted); }
 article.prose { display: grid; gap: 14px; }
 .prose h1 { margin-bottom: 4px; }
@@ -93,6 +97,7 @@ footer a { margin: 0 8px; }
   <section class="posts" aria-label="Posts">
     <div class="empty">First posts are on the way.</div>
   </section>
+  <p class="subs">Follow along in any feed reader: <a href="/blog/rss.xml">RSS</a> &middot; <a href="/blog/atom.xml">Atom</a></p>
 </main>
 <footer><a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/calendars/">Game Jams</a> &middot; &copy; Indie Go Punk</footer>
 </body>
