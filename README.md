@@ -97,6 +97,34 @@ sitemap.xml, robots.txt    SEO; sitemap.xml is generated
 
 4. Open a pull request (see [Contributing](#contributing)). The post goes live when the PR is merged into `main`.
 
+### The `bin/new-post` script
+
+Creates a new post file from a template so you do not have to type the front matter by hand.
+
+Run it from the repository root:
+
+```bash
+bin/new-post "Post title"                  # author is taken from: git config user.name
+bin/new-post "Post title" "Author Name"    # set the author yourself
+```
+
+If you get `Permission denied`, either run it through bash (`bash bin/new-post "Post title"`) or make it executable once with `chmod +x bin/new-post`. On Windows, run it from Git Bash or WSL.
+
+What it does:
+
+- Makes the slug from the title: lowercase, anything that is not a letter or digit becomes a hyphen. `"Why We Love Game Jams!"` becomes `why-we-love-game-jams`.
+- Writes `blog/posts/<slug>.md` with the title, slug, today's date, the author, and a placeholder description to replace.
+- Fills the body with an example paragraph, heading, list and quote, plus a comment holding YouTube and image examples to copy from.
+- Prints the path of the new file and the next command to run.
+
+It stops with an error, and changes nothing, when:
+
+- no title is given (prints the usage line),
+- the title has no letters or digits, so no slug can be made,
+- a post with that slug already exists. It never overwrites a post.
+
+After it runs: edit the file, replace the placeholder description, then `python3 bin/blog.py build` and preview.
+
 ### What CI does
 
 `.github/workflows/blog.yml` runs on pull requests and pushes to `main` that touch the blog. It runs `bin/test_blog.py`, rebuilds the blog, and fails if the generated pages differ from what was committed. If it fails with "Run python3 bin/blog.py build and commit the result", do exactly that. CI never commits anything for the blog.
