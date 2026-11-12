@@ -5,7 +5,7 @@
   bin/jams_sync.py --write    Apply: update dates of known itch jams, add new popular ones.
 
 Rules
-- Reads https://itch.io/jams/upcoming and /jams/in-progress (public pages, allowed by robots.txt).
+- Reads https://itch.io/jams/upcoming (a public page, allowed by robots.txt). Markup attribute order varies, so patterns ignore it.
 - A jam already in the file (same itch URL) gets its start and end date refreshed.
 - A new jam is added only if it has at least MIN_JOINED joined. A new end date can be a day short: review it.
 - New jams carry source "itch-sync" so a human can review them. Format defaults to online.
@@ -35,8 +35,10 @@ def parse_page(page):
     out = []
     for chunk in page.split('<div class="jam lazy_images">')[1:]:
         m = re.search(r'<h3[^>]*><a href="(/jam/[^"]+)">(.*?)</a>', chunk)
-        t = re.search(r'class="date_countdown">([0-9T:\-]+)Z?<', chunk) or re.search(r'title="([0-9\- :]+)" class="date_countdown"', chunk)
-        d = re.search(r'class="date_duration">\s*([0-9.]+)\s*(\w+?)s?\s*<', chunk)
+        t = re.search(r'<span[^>]*class="date_countdown"[^>]*>\s*([0-9T:\-]{19})', chunk) \
+            or re.search(r'<span[^>]*class="date_countdown"[^>]*title="([0-9\- :]{19})"', chunk) \
+            or re.search(r'<span[^>]*title="([0-9\- :]{19})"[^>]*class="date_countdown"', chunk)
+        d = re.search(r'<span[^>]*class="date_duration"[^>]*>\s*([0-9.]+)\s*(\w+?)s?\s*<', chunk)
         if not (m and t and d):
             continue
         host = re.search(r'Hosted by <a [^>]*>(.*?)</a>', chunk)
@@ -54,7 +56,7 @@ def parse_page(page):
 
 def fetch_all():
     seen = {}
-    for path in ("/jams/in-progress", "/jams/upcoming"):
+    for path in ("/jams/upcoming",):  # the in-progress list has no start date, so it is not used
         for n in range(1, MAX_PAGES + 1):
             rows = parse_page(get(f"https://itch.io{path}?page={n}"))
             if not rows:
