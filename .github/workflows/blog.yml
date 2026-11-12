@@ -1,0 +1,15 @@
+# Checks blog posts and makes sure the generated pages were rebuilt and committed with them.
+name: blog
+on:
+  pull_request: { paths: ["blog/**", "bin/blog.py", "bin/test_blog.py", "bin/jams.py"] }
+  push: { branches: [main], paths: ["blog/**", "bin/blog.py"] }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install markdown==3.10.2
+      - run: python3 bin/test_blog.py
+      - run: python3 bin/blog.py build
+      - name: Generated pages are up to date
+        run: git diff --exit-code -- blog || (echo "::error::Run python3 bin/blog.py build and commit the result"; exit 1)
