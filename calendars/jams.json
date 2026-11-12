@@ -15,7 +15,22 @@
       "duration_hours": 72,
       "prize": true,
       "note": "Unreal Engine and UEFN jam with large cash prizes. Online, plus a two-day in-person event in San Francisco.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
+    },
+    {
+      "id": "hand-crafted-jam",
+      "name": "Hand Crafted Jam",
+      "url": "https://itch.io/jam/hand-crafted-jam",
+      "start": "2026-11-12",
+      "end": "2026-11-19",
+      "host": "Dylan Browne",
+      "platform": "itch.io",
+      "format": "online",
+      "team": "both",
+      "duration_hours": 168,
+      "prize": false,
+      "verified": "2026-11-11",
+      "source": "itch-sync"
     },
     {
       "id": "mini-jame-gam-61",
@@ -32,7 +47,7 @@
       "duration_hours": 48,
       "prize": false,
       "note": "Short weekend jam with a theme revealed at the start.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "godot-wild-jam-99",
@@ -49,7 +64,7 @@
       "duration_hours": 216,
       "prize": false,
       "note": "Monthly nine-day jam for Godot games. Teams of up to 5. The community picks the theme.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     },
     {
@@ -67,7 +82,7 @@
       "duration_hours": 16,
       "prize": true,
       "note": "Two-day in-person jam for middle and high school students. Prizes include an internship.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "micro-jam-069",
@@ -84,7 +99,7 @@
       "duration_hours": 48,
       "prize": true,
       "note": "Weekend micro jam with a Halloween theme and small cash prizes.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "finish-your-game-jam-2026",
@@ -101,7 +116,7 @@
       "duration_hours": 408,
       "prize": false,
       "note": "Non-competitive jam for finishing projects. Local Portland events and open remote entry.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "ggj-next-2027",
@@ -118,7 +133,7 @@
       "duration_hours": 2880,
       "prize": true,
       "note": "Youth jam for ages 10-18 that feeds the G4C Student Challenge. Jam sites can run any time in the window.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "metroidvania-month-34",
@@ -135,7 +150,7 @@
       "duration_hours": 720,
       "prize": false,
       "note": "Monthlong unranked jam for Metroidvania games. No theme and no team size limit.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "game-writing-sig-arcjam-2026",
@@ -152,7 +167,7 @@
       "duration_hours": 72,
       "prize": false,
       "note": "Weekend jam focused on narrative and game writing, run by Arcweave.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "gmt-jam-1",
@@ -169,7 +184,7 @@
       "duration_hours": 240,
       "prize": true,
       "note": "First jam from an Indian non-profit gaming community. Teams up to 3, $300 pool, game and dev log tracks.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "bezi-jam-15",
@@ -186,7 +201,7 @@
       "duration_hours": 72,
       "prize": true,
       "note": "Three-day Unreal Engine jam with a $400 prize pool.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "micro-jam-070",
@@ -203,7 +218,7 @@
       "duration_hours": 48,
       "prize": true,
       "note": "Weekend micro jam with a circus theme and small cash prizes.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "pixel-forge-mega-jam-2026",
@@ -220,7 +235,7 @@
       "duration_hours": 240,
       "prize": true,
       "note": "Ten-day jam with cash and software prizes. Teams of up to 4.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "uplifting-game-jam-dec-2026",
@@ -237,7 +252,7 @@
       "duration_hours": 312,
       "prize": true,
       "note": "Two-week jam for uplifting games with cash prizes.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "procjam-2026",
@@ -254,7 +269,7 @@
       "duration_hours": 216,
       "prize": false,
       "note": "Procedural generation jam with no winners. Games, toys, art and music all count.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     },
     {
@@ -272,7 +287,7 @@
       "duration_hours": 240,
       "prize": false,
       "note": "Ten-day jam, teams up to 6. Entries are rated in seven categories.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "mfg-gamblers-jam-2026",
@@ -289,7 +304,7 @@
       "duration_hours": 186,
       "prize": true,
       "note": "Eight-day jam with a gambling-style bonus theme. Hack Club gives prizes to teen entrants.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "mini-jame-gam-62",
@@ -306,7 +321,7 @@
       "duration_hours": 48,
       "prize": false,
       "note": "Next weekend edition of the Jame Gam mini series.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "godot-wild-jam-100",
@@ -323,7 +338,7 @@
       "duration_hours": 216,
       "prize": false,
       "note": "The 100th monthly Godot Wild Jam. Godot only, nine days.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     },
     {
@@ -341,7 +356,7 @@
       "duration_hours": 240,
       "prize": false,
       "note": "Ten-day community jam in December.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "micro-jam-071",
@@ -358,7 +373,7 @@
       "duration_hours": 48,
       "prize": true,
       "note": "Weekend micro jam with a coffee theme and small cash prizes.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "dutch-game-jam-8",
@@ -375,7 +390,7 @@
       "duration_hours": 370,
       "prize": false,
       "note": "Two-week jam run on Discord in Dutch. Teams of 4 to 5 suggested.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "glam-jam-iii",
@@ -392,7 +407,7 @@
       "duration_hours": 726,
       "prize": false,
       "note": "Monthlong jam about nostalgia for a genre. Winners due 10 Feb.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "gdko-2027-round-1",
@@ -409,7 +424,7 @@
       "duration_hours": 336,
       "prize": false,
       "note": "Two-week first round of a knockout-style jam series.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "opengameart-winter-game-jam-2027",
@@ -426,7 +441,7 @@
       "duration_hours": 720,
       "prize": false,
       "note": "Monthlong winter jam tied to the OpenGameArt community.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "union-made-jam-2027",
@@ -443,7 +458,7 @@
       "duration_hours": 735,
       "prize": false,
       "note": "Monthlong jam run by the United Videogame Workers union. Theme revealed at the start.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "comfy-jam-winter-2027",
@@ -460,7 +475,7 @@
       "duration_hours": 336,
       "prize": false,
       "note": "Two-week jam for cozy games.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "fiea-collegiate-game-jam-2027",
@@ -494,7 +509,7 @@
       "duration_hours": 216,
       "prize": false,
       "note": "Nine-day arcade-style jam.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "pirate-software-game-jam-20",
@@ -511,7 +526,7 @@
       "duration_hours": 336,
       "prize": true,
       "note": "Two-week jam with a community-voted theme. Teams up to 5 or solo.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     },
     {
@@ -529,7 +544,7 @@
       "duration_hours": 168,
       "prize": false,
       "note": "One-week jam with a one-bit visual style.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "historically-accurate-game-jam-14",
@@ -546,7 +561,7 @@
       "duration_hours": 216,
       "prize": false,
       "note": "Nine-day jam about games grounded in real history.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "global-game-jam-2027",
@@ -581,7 +596,7 @@
       "duration_hours": 744,
       "prize": false,
       "note": "Monthlong jam for making games that blind players can enjoy.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "brackeys-game-jam-2027-1",
@@ -598,7 +613,7 @@
       "duration_hours": 168,
       "prize": false,
       "note": "One-week jam with a voted theme, teams encouraged. Prize details come about a month before.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     },
     {
@@ -616,7 +631,7 @@
       "duration_hours": 168,
       "prize": false,
       "note": "One-week French-language jam run by Gamethan.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "1-bit-jam-18",
@@ -633,7 +648,7 @@
       "duration_hours": 168,
       "prize": false,
       "note": "One-week jam with a one-bit visual style.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "plug-jam-2027",
@@ -650,7 +665,7 @@
       "duration_hours": 240,
       "prize": false,
       "note": "Ten-day spring jam.",
-      "verified": "2026-11-10"
+      "verified": "2026-11-11"
     },
     {
       "id": "gamedevjs-jam-2027",
@@ -667,7 +682,7 @@
       "duration_hours": 312,
       "prize": true,
       "note": "Two-week jam for JavaScript and web games. Challenge prizes are still to be announced.",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "featured": true
     }
   ]
