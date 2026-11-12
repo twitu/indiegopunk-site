@@ -1,0 +1,22 @@
+# Checks the jam data on every change and keeps jams.ics in step with jams.json.
+name: jams
+on:
+  push: { branches: [main], paths: ["calendars/jams.json"] }
+  pull_request: { paths: ["calendars/**", "bin/jams.py"] }
+  schedule: [{ cron: "0 6 * * 1" }]   # Mondays: warn about stale entries
+permissions: { contents: write }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 bin/jams.py check
+      - name: Stale entries
+        run: python3 bin/jams.py stale 30 | tee /dev/stderr | sed 's/^/::warning::/'
+      - name: Rebuild feed
+        if: github.event_name != 'pull_request'
+        run: |
+          python3 bin/jams.py build
+          git config user.name "jams-bot"; git config user.email "jams-bot@users.noreply.github.com"
+          git add calendars/jams.json calendars/jams.ics calendars/index.html sitemap.xml
+          git diff --cached --quiet || (git commit -m "calendars: rebuild feed and structured data" && git push)
